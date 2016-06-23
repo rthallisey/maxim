@@ -6,7 +6,7 @@
 # Update vars
 ##############
 # Default is to upgrade
-update_services: yes
+# update_services: no
 
 ###################
 # Tripleo Services
@@ -14,3 +14,4 @@ update_services: yes
 # Comment out any services you don't want to upgrade/update
 tripleo_services:
   - keystone
+  - glance

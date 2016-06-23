@@ -4,3 +4,11 @@
     - { role: keystone,
         tags: keystone,
         when: "'keystone' in tripleo_services" }
+
+- hosts:
+    - glance-api
+    - glance-registry
+  roles:
+    - { role: glance,
+        tags: glance,
+        when: "'glance' in tripleo_services" }

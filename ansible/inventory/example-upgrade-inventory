@@ -20,3 +20,9 @@ ansible_become_method=sudo
 
 [keystone:children]
 controller
+
+[glance-api:children]
+controller
+
+[glance-registry:children]
+controller

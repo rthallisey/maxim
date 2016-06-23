@@ -17,3 +17,4 @@ update_services: no
 ###################
 tripleo_services:
   - keystone
+  - glance

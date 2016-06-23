@@ -1,0 +1,12 @@
+---
+- name: Starting glance-api service
+  service:
+    name: openstack-glance-api
+    state: started
+  when: inventory_hostname in groups['glance-api']
+
+- name: Starting glance-registry service
+  service:
+    name: openstack-glance-registry
+    state: started
+  when: inventory_hostname in groups['glance-registry']

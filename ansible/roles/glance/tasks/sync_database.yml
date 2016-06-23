@@ -1,0 +1,6 @@
+---
+- name: Run Glance DB sync
+  shell: glance-manage db_sync
+  run_once: true
+  when: inventory_hostname in groups ['glance-api']
+        and "{{ not update_services | bool }}"

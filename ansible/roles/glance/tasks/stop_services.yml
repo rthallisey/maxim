@@ -1,0 +1,12 @@
+---
+- name: Stopping glance-api service
+  service:
+    name: openstack-glance-api
+    state: stopped
+  when: inventory_hostname in groups ['glance-api']
+
+- name: Stopping glance-registry service
+  service:
+    name: openstack-glance-registry
+    state: stopped
+  when: inventory_hostname in groups ['glance-registry']
