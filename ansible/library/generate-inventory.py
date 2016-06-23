@@ -12,6 +12,7 @@ class BuildInventory (object):
         self.result = ''
         self.heat_upgrade_data = ''
         self.heat_node_data = ''
+        self.tripleo_services = {}
 
 
     def read_heat_output(self, heat_output_file, var_name):
@@ -43,16 +44,15 @@ class BuildInventory (object):
 
         for role_dict in heat_upgrade_data:
             for role in role_dict:
-                inventory_file.write('[%s]\n' % role)
+                inventory_file.write('\n[%s]\n' % role)
 
                 for hosts in heat_node_data[0][role]:
                     inventory_file.write('%s\n' % hosts)
 
                 self.write_common_data(inventory_file, role)
+                self.tripleo_services[role] = role_dict.get(role)
 
-                for service in role_dict.get(role):
-                    inventory_file.write('\n[%s]\n' % role)
-                    inventory_file.write('%s\n' % service)
+        self.write_service_list(inventory_file)
         inventory_file.close()
         self.result = "Created inventory file at /etc/tripleo/upgrade-inventory"
         self.changed = True
@@ -66,6 +66,16 @@ class BuildInventory (object):
                              'ansible_become=true\n'
                              'ansible_become_user=root\n'
                              'ansible_become_method=sudo\n' % role)
+
+
+    def write_service_list(self, inventory_file):
+        # Add a role to a service
+        # [keystone:children]
+        # controller
+        for role in self.tripleo_services:
+            for service in self.tripleo_services[role]:
+                inventory_file.write('\n[%s:children]\n' % service)
+                inventory_file.write('%s\n' % role)
 
 
 def main():

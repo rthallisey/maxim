@@ -1,0 +1,4 @@
+---
+- include: ../../{{ item }}/tasks/sync_database.yml
+  serial: "30%"
+  with_items: "{{ tripleo_services }}"

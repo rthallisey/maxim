@@ -1,0 +1,6 @@
+---
+- hosts: keystone
+  roles:
+    - { role: keystone,
+        tags: keystone,
+        when: "'keystone' in tripleo_services" }

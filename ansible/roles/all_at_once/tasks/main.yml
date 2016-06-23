@@ -1,0 +1,9 @@
+---
+- include: stop_services.yml
+
+- include: update_packages.yml
+
+- include: sync_database.yml
+  when: "{{ not update_services | bool }}"
+
+- include: start_services.yml

@@ -1,0 +1,4 @@
+---
+- include: ../../{{ item }}/tasks/stop_services.yml
+  serial: "30%"
+  with_items: "{{ tripleo_services }}"

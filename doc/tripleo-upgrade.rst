@@ -25,14 +25,14 @@ Ansible groups by their role defined by the operator.
    192.0.2.6
    192.0.2.7
 
+   [compute]
+   192.0.2.8
+
    [controller:vars]
    ansible_ssh_user=heat-admin
    ansible_become=true
    ansible_become_user=root
    ansible_become_method=sudo
-
-   [compute]
-   192.0.2.8
 
    [compute:vars]
    ansible_ssh_user=heat-admin
@@ -50,25 +50,31 @@ or removing services from ``tripleo_services``.
 ::
 
        tripleo_services:
-         - OS::TripleO::Services::Keystone
-         - OS::TripleO::Services::GlanceApi
-         - OS::TripleO::Services::GlanceRegistry
+         - keystone
+         - glance
 
 Running an Upgrade
 ------------------
 
-Run the upgrade on the services specified in ``tripleo_services`` and
-consume the inventory file generated earlier.
+The operator can run a rolling upgrade or the traditional all-at-once
+upgrade.  The rolling upgrade will perform the upgrade tasks one service
+at a time on a percentage of the services.  The all-at-once approach will
+stop all services, update the packages, db_sync, and restart all the services.
 
-::
+Run a rolling upgrade on the services specified in ``tripleo_services``::
 
-   ansible-playbook -i /etc/tripleo/upgrade_inventory -e ansible/upgrade_vars.yml site.yml
+   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @ansible/upgrade_vars.yml rolling.yml
+
+Run an all-at-once upgrade::
+
+   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @ansible/upgrade_vars.yml all-at-once.yml
 
 Running a Minor Update
 ----------------------
 
 If the operator wants to update, set ``update_services`` in
-``ansible/upgrade_vars.yml`` to yes and run the same playbook as above.
+``ansible/upgrade_vars.yml`` to yes and run either the ``rolling.yml`` or
+the ``all-at-once.yml`` playbook from above.
 
 ::
 

@@ -1,7 +1,0 @@
----
-- hosts:
-    - keystone
-  roles:
-    - { role: keystone,
-        tags: keystone,
-        when: "'OS::TripleO::Services::Keystone' in tripleo_services" }

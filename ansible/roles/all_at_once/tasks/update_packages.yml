@@ -1,0 +1,4 @@
+---
+- include: ../../{{ item }}/tasks/update_packages.yml
+  serial: "30%"
+  with_items: "{{ tripleo_services }}"
