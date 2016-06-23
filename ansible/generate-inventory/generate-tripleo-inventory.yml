@@ -1,4 +1,4 @@
 ---
 - hosts: undercloud
   roles:
-    - generate-inventory
+    - generate-tripleo-inventory

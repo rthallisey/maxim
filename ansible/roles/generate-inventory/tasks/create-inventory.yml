@@ -11,5 +11,5 @@
   failed_when: nodes.stat.exists == False
 
 - name: Generating inventory file
-  generate-inventory:
+  generate-tripleo-inventory:
   become: yes
