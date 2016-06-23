@@ -3,10 +3,12 @@
   service:
     name: openstack-glance-api
     state: stopped
+  become: yes
   when: inventory_hostname in groups ['glance-api']
 
 - name: Stopping glance-registry service
   service:
     name: openstack-glance-registry
     state: stopped
+  become: yes
   when: inventory_hostname in groups ['glance-registry']

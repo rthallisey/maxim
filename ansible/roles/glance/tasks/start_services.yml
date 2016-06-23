@@ -3,10 +3,12 @@
   service:
     name: openstack-glance-api
     state: started
+  become: yes
   when: inventory_hostname in groups['glance-api']
 
 - name: Starting glance-registry service
   service:
     name: openstack-glance-registry
     state: started
+  become: yes
   when: inventory_hostname in groups['glance-registry']
