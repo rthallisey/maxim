@@ -1,0 +1,5 @@
+---
+- name: Update keystone packages
+  yum:
+    name: openstack-keystone
+    state: latest

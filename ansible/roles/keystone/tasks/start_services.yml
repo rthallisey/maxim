@@ -1,0 +1,5 @@
+---
+- name: Starting keystone service
+  service:
+    name: httpd
+    state: started

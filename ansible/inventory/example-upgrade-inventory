@@ -1,0 +1,22 @@
+[controller]
+192.0.2.5
+192.0.2.6
+192.0.2.7
+
+[compute]
+192.0.2.8
+
+[controller:vars]
+ansible_ssh_user= <user>
+ansible_become=true
+ansible_become_user=root
+ansible_become_method=sudo
+
+[compute:vars]
+ansible_ssh_user= <user>
+ansible_become=true
+ansible_become_user=root
+ansible_become_method=sudo
+
+[keystone:children]
+controller

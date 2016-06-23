@@ -1,0 +1,13 @@
+# Localhost testing inventory file
+
+[undercloud]
+localhost  ansible_connection=local
+
+[controller]
+localhost  ansible_connection=local
+
+[compute]
+localhost  ansible_connection=local
+
+[keystone:children]
+controller

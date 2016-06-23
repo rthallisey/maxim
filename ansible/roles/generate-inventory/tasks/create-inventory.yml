@@ -1,0 +1,15 @@
+---
+- name: Gathering overcloud information
+  get-heat-output:
+
+- stat: path=/tmp/upgrade-information
+  register: info
+  failed_when: info.stat.exists == False
+
+- stat: path=/tmp/node-information
+  register: nodes
+  failed_when: nodes.stat.exists == False
+
+- name: Generating inventory file
+  generate-inventory:
+  become: yes

@@ -1,0 +1,5 @@
+---
+- name: Run keystone DB sync
+  shell: keystone-manage db_sync
+  run_once: true
+  when: "{{ not update_services | bool }}"

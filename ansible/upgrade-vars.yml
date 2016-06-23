@@ -1,0 +1,16 @@
+---
+# This file will be used to control what service is being upgraded.
+# upgrade-vars.yml will exists at '/etc/tripleo/upgrade-vars.yml'
+
+##############
+# Update vars
+##############
+# The default is to upgrade
+#update_services: no
+
+###################
+# Tripleo Services
+###################
+# Comment out any services you don't want to upgrade/update
+tripleo_services:
+  - OS::TripleO::Services::Keystone

@@ -1,0 +1,4 @@
+---
+- include: stackrc-check.yml
+
+- include: create-inventory.yml

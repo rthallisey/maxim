@@ -1,0 +1,18 @@
+---
+# This file will be used to upgrade controller services
+
+#############
+# Undercloud
+#############
+undercloud_credentials: "/home/stack/stackrc"
+
+##############
+# Update vars
+##############
+update_services: no
+
+###################
+# Upgrade Services
+###################
+tripleo_services:
+  - OS::TripleO::Services::Keystone
