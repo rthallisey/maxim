@@ -22,7 +22,7 @@ class BuildInventory (object):
 
             if var_name is 'heat_upgrade_data':
                 self.heat_upgrade_data = heat_output_data
-            if var_name is 'heat_upgrade_data':
+            if var_name is 'heat_node_data':
                 self.heat_node_data = heat_output_data
             return True
         else:
