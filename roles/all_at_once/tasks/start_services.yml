@@ -1,4 +1,4 @@
 ---
-- include: ../../{{ item }}/tasks/start_services.yml
+- include: "{{ playbook_dir }}/roles/{{ item }}/tasks/start_services.yml"
   serial: "30%"
   with_items: "{{ tripleo_services }}"
