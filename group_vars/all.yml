@@ -2,15 +2,16 @@
 # This file will be used to upgrade all services
 # Any of these variables can be overwritten by upgrade-vars.yml
 
-#############
-# Undercloud
-#############
-undercloud_credentials: "/home/stack/stackrc"
+# Specify the deployment tool of an existing OpenStack cloud that will
+# be upgraded
+project: tripleo
+
 
 ##############
 # Update vars
 ##############
 update_services: no
+
 
 ###################
 # Upgrade Services
@@ -18,3 +19,13 @@ update_services: no
 tripleo_services:
   - keystone
   - glance
+
+
+##############################
+# PROJECT SPECIFIC VARIABLES #
+##############################
+
+##########
+# Tripleo
+##########
+undercloud_credentials: "/home/stack/stackrc"

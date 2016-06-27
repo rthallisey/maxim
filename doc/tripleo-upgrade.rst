@@ -4,13 +4,13 @@ TripleO overcloud upgrades and updates
 Generate the inventory file for your overcloud
 ----------------------------------------------
 
-Generate the inventory file using the ``ansible/generate-inventory.yml``
+Generate the inventory file using the ``generate-inventory.yml``
 playbook. This playbook can be run any number of times to update the inventory
 of the overcloud.
 
 ::
 
-   ansible-playbook -i 'undercloud,' -c local ansible/generate-inventory.yml
+   ansible-playbook -i 'undercloud,' -c local generate-inventory.yml
 
 The inventory file will contain a list of the overcloud servers divided into
 Ansible groups by their role defined by the operator.
@@ -43,7 +43,7 @@ Ansible groups by their role defined by the operator.
 Managing the Upgrade
 --------------------
 
-The operator will use ``ansible/upgrade_vars.yml`` to drive the upgrade. Edit
+The operator will use ``upgrade_vars.yml`` to drive the upgrade. Edit
 this file to change what services will be included in the upgrade play by adding
 or removing services from ``tripleo_services``.
 
@@ -63,17 +63,17 @@ stop all services, update the packages, db_sync, and restart all the services.
 
 Run a rolling upgrade on the services specified in ``tripleo_services``::
 
-   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @ansible/upgrade_vars.yml rolling.yml
+   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @upgrade_vars.yml upgrade-types/rolling.yml
 
 Run an all-at-once upgrade::
 
-   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @ansible/upgrade_vars.yml all-at-once.yml
+   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @upgrade_vars.yml upgrade-types/all-at-once.yml
 
 Running a Minor Update
 ----------------------
 
 If the operator wants to update, set ``update_services`` in
-``ansible/upgrade_vars.yml`` to yes and run either the ``rolling.yml`` or
+``upgrade_vars.yml`` to yes and run either the ``rolling.yml`` or
 the ``all-at-once.yml`` playbook from above.
 
 ::

@@ -2,15 +2,25 @@
 # This file will be used to control what service is being upgraded.
 # upgrade-vars.yml will exist at '/etc/tripleo/upgrade-vars.yml'
 
+# Specify the deployment tool of an existing OpenStack cloud that will
+# be upgraded
+project: tripleo
+
+
 ##############
 # Update vars
 ##############
-# Default is to upgrade
+# Upgrade or Update.  Default is to upgrade
 # update_services: no
 
-###################
-# Tripleo Services
-###################
+
+##############################
+# PROJECT SPECIFIC VARIABLES #
+##############################
+
+##########
+# Tripleo
+##########
 # Comment out any services you don't want to upgrade/update
 tripleo_services:
   - keystone
