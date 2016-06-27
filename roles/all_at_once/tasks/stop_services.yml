@@ -1,4 +1,4 @@
 ---
 - include: "{{ playbook_dir }}/roles/{{ item }}/tasks/stop_services.yml"
   serial: "30%"
-  with_items: "{{ tripleo_services }}"
+  with_items: "{{ openstack_services }}"

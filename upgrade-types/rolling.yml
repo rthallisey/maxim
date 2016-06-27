@@ -3,7 +3,7 @@
   roles:
     - { role: keystone,
         tags: keystone,
-        when: "'keystone' in tripleo_services" }
+        when: "'keystone' in openstack_services" }
 
 - hosts:
     - glance-api
@@ -11,4 +11,16 @@
   roles:
     - { role: glance,
         tags: glance,
-        when: "'glance' in tripleo_services" }
+        when: "'glance' in openstack_services" }
+
+- hosts:
+    - cinder-api
+    - cinder-scheduler
+    - cinder-volumes
+  vars:
+    pacemaker_services:
+      - cinder-volumes
+  roles:
+    - { role: cinder,
+        tags: cinder,
+        when: "'cinder' in openstack_services" }

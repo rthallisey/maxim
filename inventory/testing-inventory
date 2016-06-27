@@ -17,3 +17,12 @@ controller
 
 [glance-registry:children]
 controller
+
+[cinder-scheduler:children]
+controller
+
+[cinder-api:children]
+controller
+
+[cinder-volumes:children]
+controller

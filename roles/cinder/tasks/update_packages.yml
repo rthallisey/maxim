@@ -1,0 +1,5 @@
+---
+- name: Update Cinder packages
+  yum:
+    name: openstack-cinder
+    state: latest

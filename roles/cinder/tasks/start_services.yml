@@ -1,0 +1,19 @@
+---
+- name: Starting Cinder API service
+  service:
+    name: openstack-cinder-api
+    state: started
+  when: inventory_hostname in groups ['cinder-api']
+
+- name: Starting Cinder Scheduler service
+  service:
+    name: openstack-cinder-scheduler
+    state: started
+  when: inventory_hostname in groups ['cinder-scheduler']
+
+- name: Starting Cinder Volumes service
+  service:
+    name: openstack-cinder-volumes
+    state: started
+  when: inventory_hostname in groups ['cinder-volumes']
+        and "'cinder-volumes' not in pacemaker_managed_services"

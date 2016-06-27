@@ -12,14 +12,10 @@ project: tripleo
 ##############
 update_services: no
 
-
-###################
-# Upgrade Services
-###################
-tripleo_services:
+openstack_services:
   - keystone
   - glance
-
+  - cinder
 
 ##############################
 # PROJECT SPECIFIC VARIABLES #
@@ -29,3 +25,5 @@ tripleo_services:
 # Tripleo
 ##########
 undercloud_credentials: "/home/stack/stackrc"
+pacemaker_managed_services:
+  - cinder-volumes

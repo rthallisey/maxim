@@ -45,11 +45,11 @@ Managing the Upgrade
 
 The operator will use ``upgrade_vars.yml`` to drive the upgrade. Edit
 this file to change what services will be included in the upgrade play by adding
-or removing services from ``tripleo_services``.
+or removing services from ``openstack_services``.
 
 ::
 
-       tripleo_services:
+       openstack_services:
          - keystone
          - glance
 
@@ -61,7 +61,7 @@ upgrade.  The rolling upgrade will perform the upgrade tasks one service
 at a time on a percentage of the services.  The all-at-once approach will
 stop all services, update the packages, db_sync, and restart all the services.
 
-Run a rolling upgrade on the services specified in ``tripleo_services``::
+Run a rolling upgrade on the services specified in ``openstack_services``::
 
    ansible-playbook -i /etc/tripleo/upgrade_inventory -e @upgrade_vars.yml upgrade-types/rolling.yml
 
@@ -79,3 +79,22 @@ the ``all-at-once.yml`` playbook from above.
 ::
 
   update_services: yes
+
+Pacemaker managed services
+--------------------------
+
+Pacemaker will be managing services like cinder-volumes, rabbitmq, maridb,
+ect...  In ``upgrade-vars.yml``, there will be a minimal set of Pacemaker
+managed services set as defaults. The operator has a choice as to which services
+will be upgraded with Pacemaker. For example, Cinder Volumes by default is
+set to be upgraded with Pacemaker.
+
+::
+
+   # Add/remove and services managed by Pacemaker
+   pacemaker_managed_services:
+     - cinder-volumes
+
+.. note:: Ansible will detect what services are being managed by Pacemaker
+in the overcloud by query Heat and it will check against the list specified in
+``pacemaker_managed_services`` to be sure it's correct.

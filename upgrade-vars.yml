@@ -13,6 +13,12 @@ project: tripleo
 # Upgrade or Update.  Default is to upgrade
 # update_services: no
 
+# Comment out any services you don't want to upgrade/update
+openstack_services:
+  - keystone
+  - glance
+  - cinder
+
 
 ##############################
 # PROJECT SPECIFIC VARIABLES #
@@ -21,7 +27,6 @@ project: tripleo
 ##########
 # Tripleo
 ##########
-# Comment out any services you don't want to upgrade/update
-tripleo_services:
-  - keystone
-  - glance
+# Add/remove and services managed by Pacemaker
+pacemaker_managed_services:
+  - cinder-volumes

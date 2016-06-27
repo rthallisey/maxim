@@ -1,0 +1,20 @@
+---
+- name: Stopping Cinder API service
+  service:
+    name: openstack-cinder-api
+    state: stopped
+  when: inventory_hostname in groups ['cinder-api']
+
+- name: Stopping Cinder Scheduler service
+  service:
+    name: openstack-cinder-scheduler
+    state: stopped
+  when: inventory_hostname in groups ['cinder-scheduler']
+
+- name: Stopping Cinder Volumes service
+  service:
+    name: openstack-cinder-volumes
+    state: stopped
+  when: "'cinder-volumes' not in pacemaker_managed_services"
+#  when: inventory_hostname in groups ['cinder-volumes']
+#        and "'cinder-volumes' in pacemaker_managed_services"
