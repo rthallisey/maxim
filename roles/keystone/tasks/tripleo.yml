@@ -1,8 +1,6 @@
 ---
-- include: stop_services.yml
+- include: pacemaker.yml
+  when: "inventory_hostname in {{ pacemaker_managed_services }}"
 
-- include: update_packages.yml
-
-- include: sync_database.yml
-
-- include: start_services.yml
+- include: systemd.yml
+  when: "inventory_hostname not in {{ pacemaker_managed_services }}"
