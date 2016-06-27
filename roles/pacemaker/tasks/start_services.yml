@@ -2,11 +2,9 @@
 - name: Starting Pacemaker managed services
   command: "/usr/sbin/pcs resource enable openstack-{{ item }}"
   run_once: true
-  when: inventory_hostname in groups["{{ item }}"]
   with_items: "{{ pacemaker_services }}"
 
 - name: Waiting for cluster to settle
   command: /usr/sbin/crm_resource --wait
   run_once: true
-  when: inventory_hostname in groups["{{ item }}"]
   with_items: "{{ pacemaker_services }}"

@@ -1,8 +1,6 @@
 ---
-- name: Checking  cluster to settle
-  command: "/usr/sbin/pcs resource show --full | grep openstack-{{ item }}"
+- name: Checking cluster has settled
+  command: "/usr/sbin/pcs resource show --full | grep openstack-{{ inventory_hostname }}"
   run_once: true
-  when: inventory_hostname in groups["{{ item }}"]
-  with_items: "{{ pacemaker_services }}"
   register: result
   failed_when: result.rc != '0'
