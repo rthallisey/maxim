@@ -11,7 +11,7 @@ project: tripleo
 # Update vars
 ##############
 # Upgrade or Update.  Default is to upgrade
-# update_services: no
+update_services: no
 
 # Comment out any services you don't want to upgrade/update
 openstack_services:
