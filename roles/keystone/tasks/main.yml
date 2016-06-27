@@ -1,8 +1,2 @@
 ---
-- include: stop_services.yml
-
-- include: update_packages.yml
-
-- include: sync_database.yml
-
-- include: start_services.yml
+- include: "{{ project }}.yml"
