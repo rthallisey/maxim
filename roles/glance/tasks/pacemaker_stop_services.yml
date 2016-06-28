@@ -1,0 +1,16 @@
+---
+- name: Stopping glance-api service
+  command: "/usr/sbin/pcs resource disable openstack-glance-api"
+  run_once: true
+  when: "inventory_hostname in groups ['glance-api']
+        and 'glance-api' in pacemaker_managed_services"
+
+- name: Stopping glance-registry service
+  command: "/usr/sbin/pcs resource disable openstack-glance-registry"
+  run_once: true
+  when: "inventory_hostname in groups ['glance-registry']
+        and 'glance-registry' in pacemaker_managed_services"
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true

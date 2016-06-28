@@ -1,12 +1,8 @@
 ---
-- debug: var="pacemaker_managed_services"
-
-- debug: var="inventory_hostname"
-
 - include: pacemaker.yml
-  when: "inventory_hostname in groups[item]"
-  
-  with_items: "{{ pacemaker_managed_services }}"
+  when: "'glance-api' in pacemaker_managed_services
+        or 'glance-registry' in pacemaker_managed_services"
 
 - include: systemd.yml
-  when: "inventory_hostname not in groups[pacemaker_managed_services]"
+  when: "'glance-api' not in pacemaker_managed_services
+        or 'glance-registry' not in pacemaker_managed_services"
