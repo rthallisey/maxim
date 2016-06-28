@@ -1,6 +1,6 @@
 ---
 - name: Gathering overcloud information
-  get-heat-output:
+  get_heat_output:
 
 - stat: path=/tmp/upgrade-information
   register: info
@@ -11,5 +11,5 @@
   failed_when: nodes.stat.exists == False
 
 - name: Generating inventory file
-  generate-tripleo-inventory:
+  generate_tripleo_inventory:
   become: yes
