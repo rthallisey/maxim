@@ -1,4 +1,8 @@
 ---
-- include: "{{ playbook_dir }}/roles/{{ item }}/tasks/start_services.yml"
+- include: "{{ playbook_dir }}/roles/{{ item }}/tasks/systemd_start_services.yml"
   serial: "30%"
   with_items: "{{ openstack_services }}"
+
+- include: "{{ playbook_dir }}/roles/{{ item }}/tasks/pacemaker_start_services.yml"
+  serial: "30%"
+  with_items: "{{ pacemaker_managed_services }}"

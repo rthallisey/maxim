@@ -1,6 +1,0 @@
----
-- name: Checking cluster has settled
-  command: "/usr/sbin/pcs resource show --full | grep openstack-{{ inventory_hostname }}"
-  run_once: true
-  register: result
-  failed_when: result.rc != '0'

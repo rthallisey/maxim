@@ -1,6 +1,0 @@
----
-- include: stop_services.yml
-
-- include: start_services.yml
-
-- include: check.yml
