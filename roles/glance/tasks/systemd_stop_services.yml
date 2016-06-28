@@ -4,7 +4,7 @@
     name: openstack-glance-api
     state: stopped
   become: yes
-  when: "inventory_hostname in groups ['glance-api']
+  when: "inventory_hostname in groups['glance-api']
         and 'glance-api' not in pacemaker_managed_services"
 
 - name: Stopping glance-registry service
@@ -12,5 +12,5 @@
     name: openstack-glance-registry
     state: stopped
   become: yes
-  when: "inventory_hostname in groups ['glance-registry']
+  when: "inventory_hostname in groups['glance-registry']
         and 'glance-registry' not in pacemaker_managed_services"
