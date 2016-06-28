@@ -14,4 +14,4 @@ Getting Started
 Maxim upgrade playbooks currently targets tripleo.  Here are the docs
 to get starting testing a `tripleo upgrade`_.
 
-.. _tripleo upgrade: ./docs/tripleo-upgrade.rst
+.. _tripleo upgrade: ./doc/tripleo-upgrade.rst
