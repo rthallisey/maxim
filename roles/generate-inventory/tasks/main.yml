@@ -1,2 +1,2 @@
 ---
-- include: "{{ project }}".yml
+- include: "{{ project }}.yml"
