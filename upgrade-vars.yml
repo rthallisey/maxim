@@ -27,6 +27,7 @@ openstack_services:
 ##########
 # Tripleo
 ##########
+# Be careful not to leave and empty list or Ansible will complain
 # Add/remove and services managed by Pacemaker
 pacemaker_managed_services:
   - cinder-volumes

@@ -49,9 +49,9 @@ or removing services from ``openstack_services``.
 
 ::
 
-       openstack_services:
-         - keystone
-         - glance
+   openstack_services:
+     - keystone
+     - glance
 
 Running an Upgrade
 ------------------
@@ -63,11 +63,11 @@ stop all services, update the packages, db_sync, and restart all the services.
 
 Run a rolling upgrade on the services specified in ``openstack_services``::
 
-   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @upgrade_vars.yml upgrade-types/rolling.yml
+   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @upgrade_vars.yml rolling.yml
 
 Run an all-at-once upgrade::
 
-   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @upgrade_vars.yml upgrade-types/all-at-once.yml
+   ansible-playbook -i /etc/tripleo/upgrade_inventory -e @upgrade_vars.yml all-at-once.yml
 
 Running a Minor Update
 ----------------------
@@ -91,10 +91,11 @@ set to be upgraded with Pacemaker.
 
 ::
 
+   # Be careful not to leave and empty list or Ansible will complain
    # Add/remove and services managed by Pacemaker
    pacemaker_managed_services:
      - cinder-volumes
 
-.. note:: Ansible will detect what services are being managed by Pacemaker
+.. note:: (Soon to come) Ansible will detect what services are being managed by Pacemaker
 in the overcloud by query Heat and it will check against the list specified in
 ``pacemaker_managed_services`` to be sure it's correct.
