@@ -1,6 +1,0 @@
----
-- name: Stopping keystone service
-  service:
-    name: httpd
-    state: stopped
-  become: yes
