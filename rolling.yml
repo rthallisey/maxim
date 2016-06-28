@@ -1,0 +1,26 @@
+---
+- hosts: keystone
+  roles:
+    - { role: keystone,
+        tags: keystone,
+        when: "'keystone' in openstack_services" }
+
+- hosts:
+    - glance-api
+    - glance-registry
+  roles:
+    - { role: glance,
+        tags: glance,
+        when: "'glance' in openstack_services" }
+
+- hosts:
+    - cinder-api
+    - cinder-scheduler
+    - cinder-volumes
+  vars:
+    pacemaker_services:
+      - cinder-volumes
+  roles:
+    - { role: cinder,
+        tags: cinder,
+        when: "'cinder' in openstack_services" }
