@@ -4,13 +4,16 @@
   run_once: true
   when: "inventory_hostname in groups['glance-api']
         and 'glance-api' in pacemaker_managed_services"
+  tags: glance_api_pacemaker_start
 
 - name: Starting glance-registry service
   command: "/usr/sbin/pcs resource enable openstack-glance-registry"
   run_once: true
   when: "inventory_hostname in groups ['glance-registry']
         and 'glance-registry' in pacemaker_managed_services"
+  tags: glance_registry_pacemaker_start
 
 - name: Waiting for cluster to settle
   command: /usr/sbin/crm_resource --wait
   run_once: true
+  tags: [glance_api_pacemaker_start, glance_registry_pacemaker_start]

@@ -5,3 +5,4 @@
   become: true
   when: "inventory_hostname in groups ['glance-api']
         and {{ not update_services | bool }}"
+  tags: glance_db_sync

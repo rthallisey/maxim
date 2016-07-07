@@ -6,6 +6,7 @@
   become: yes
   when: "inventory_hostname in groups['glance-api']
         and 'glance-api' not in pacemaker_managed_services"
+  tags: glance_api_systemd_stop
 
 - name: Stopping glance-registry service
   service:
@@ -14,3 +15,4 @@
   become: yes
   when: "inventory_hostname in groups['glance-registry']
         and 'glance-registry' not in pacemaker_managed_services"
+  tags: glance_registry_systemd_stop
