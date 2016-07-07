@@ -2,6 +2,6 @@
 - hosts: all
   vars:
     pacemaker_services:
-      - cinder-volumes
+      - cinder-volume
   roles:
     - all_at_once

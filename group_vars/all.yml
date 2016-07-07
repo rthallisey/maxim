@@ -26,4 +26,4 @@ openstack_services:
 ##########
 undercloud_credentials: "/home/stack/stackrc"
 pacemaker_managed_services:
-  - cinder-volumes
+  - cinder-volume

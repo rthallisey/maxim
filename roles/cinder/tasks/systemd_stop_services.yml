@@ -15,10 +15,10 @@
         and 'cinder-scheduler' not in pacemaker_managed_services"
   tags: cinder_scheduler_systemd_stop
 
-- name: Stopping Cinder Volumes service
+- name: Stopping Cinder Volume service
   service:
     name: openstack-cinder-volume
     state: stopped
-  when: "inventory_hostname in groups ['cinder-volumes']
-        and 'cinder-volumes' not in pacemaker_managed_services"
+  when: "inventory_hostname in groups ['cinder-volume']
+        and 'cinder-volume' not in pacemaker_managed_services"
   tags: cinder_volume_systemd_stop

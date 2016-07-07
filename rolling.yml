@@ -16,10 +16,10 @@
 - hosts:
     - cinder-api
     - cinder-scheduler
-    - cinder-volumes
+    - cinder-volume
   vars:
     pacemaker_services:
-      - cinder-volumes
+      - cinder-volume
   roles:
     - { role: cinder,
         tags: cinder,

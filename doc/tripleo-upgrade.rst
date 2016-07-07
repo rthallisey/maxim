@@ -83,7 +83,7 @@ the ``all-at-once.yml`` playbook from above.
 Pacemaker managed services
 --------------------------
 
-Pacemaker will be managing services like cinder-volumes, rabbitmq, maridb,
+Pacemaker will be managing services like cinder-volume, rabbitmq, maridb,
 ect...  In ``upgrade-vars.yml``, there will be a minimal set of Pacemaker
 managed services set as defaults. The operator has a choice as to which services
 will be upgraded with Pacemaker. For example, Cinder Volumes by default is
@@ -94,7 +94,7 @@ set to be upgraded with Pacemaker.
    # Be careful not to leave and empty list or Ansible will complain
    # Add/remove and services managed by Pacemaker
    pacemaker_managed_services:
-     - cinder-volumes
+     - cinder-volume
 
 .. note:: (Soon to come) Ansible will detect what services are being managed by Pacemaker
 in the overcloud by query Heat and it will check against the list specified in

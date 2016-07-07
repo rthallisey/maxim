@@ -13,9 +13,9 @@
         and 'cinder-scheduler' in pacemaker_managed_services"
   tags: cinder_scheduler_pacemaker_stop
 
-- name: Stopping Cinder Volumes service
+- name: Stopping Cinder Volume service
   command: "/usr/sbin/pcs resource disable openstack-cinder-volume"
   run_once: true
-  when: "inventory_hostname in groups ['cinder-volumes']
-        and 'cinder-volumes' in pacemaker_managed_services"
+  when: "inventory_hostname in groups ['cinder-volume']
+        and 'cinder-volume' in pacemaker_managed_services"
   tags: cinder_volume_pacemaker_stop
