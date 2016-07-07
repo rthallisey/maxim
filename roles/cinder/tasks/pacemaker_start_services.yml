@@ -4,15 +4,18 @@
   run_once: true
   when: "inventory_hostname in groups ['cinder-api']
         and 'cinder-api' in pacemaker_managed_services"
+  tags: cinder_api_pacemaker_start
 
 - name: Stopping Cinder Scheduler service
   command: "/usr/sbin/pcs resource enable openstack-cinder-scheduler"
   run_once: true
   when: "inventory_hostname in groups ['cinder-scheduler']
         and 'cinder-scheduler' in pacemaker_managed_services"
+  tags: cinder_scheduler_pacemaker_start
 
 - name: Stopping Cinder Volumes service
   command: "/usr/sbin/pcs resource enable openstack-cinder-volume"
   run_once: true
   when: "inventory_hostname in groups ['cinder-volumes']
         and 'cinder-volumes' in pacemaker_managed_services"
+  tags: cinder_volume_pacemaker_start

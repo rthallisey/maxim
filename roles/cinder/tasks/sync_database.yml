@@ -5,3 +5,4 @@
   become: true
   when: "inventory_hostname in groups ['cinder-api']
         and {{ not update_services | bool }}"
+  tags: cinder_db_sync

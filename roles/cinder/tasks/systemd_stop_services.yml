@@ -5,6 +5,7 @@
     state: stopped
   when: "inventory_hostname in groups ['cinder-api']
         and 'cinder-api' not in pacemaker_managed_services"
+  tags: cinder_api_systemd_stop
 
 - name: Stopping Cinder Scheduler service
   service:
@@ -12,6 +13,7 @@
     state: stopped
   when: "inventory_hostname in groups ['cinder-scheduler']
         and 'cinder-scheduler' not in pacemaker_managed_services"
+  tags: cinder_scheduler_systemd_stop
 
 - name: Stopping Cinder Volumes service
   service:
@@ -19,3 +21,4 @@
     state: stopped
   when: "inventory_hostname in groups ['cinder-volumes']
         and 'cinder-volumes' not in pacemaker_managed_services"
+  tags: cinder_volume_systemd_stop

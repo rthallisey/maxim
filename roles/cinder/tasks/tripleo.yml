@@ -1,6 +1,8 @@
 ---
 - include: pacemaker.yml
   when: "inventory_hostname in pacemaker_managed_services"
+  tags: cinder_pacemaker_tasks
 
 - include: systemd.yml
   when: "inventory_hostname not in pacemaker_managed_services"
+  tags: cinder_systemd_tasks
