@@ -4,3 +4,4 @@
     name: httpd
     state: stopped
   become: yes
+  tags: keystone_systemd_stop

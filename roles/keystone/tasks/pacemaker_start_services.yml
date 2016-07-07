@@ -2,7 +2,9 @@
 - name: Starting keystone service
   command: "/usr/sbin/pcs resource enable httpd }}"
   run_once: true
+  tags: keystone_pacemaker_start
 
 - name: Waiting for cluster to settle
   command: /usr/sbin/crm_resource --wait
   run_once: true
+  tags: keystone_pacemaker_start

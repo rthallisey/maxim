@@ -1,6 +1,8 @@
 ---
 - include: pacemaker.yml
   when: "'keystone' in pacemaker_managed_services"
+  tags: keystone_pacemaker_tasks
 
 - include: systemd.yml
   when: "'keystone' not in pacemaker_managed_services"
+  tags: keystone_systemd_tasks

@@ -2,7 +2,9 @@
 - name: Stopping keystone service
   command: "/usr/sbin/pcs resource disable httpd"
   run_once: true
+  tags: keystone_pacemaker_stop
 
 - name: Waiting for cluster to settle
   command: /usr/sbin/crm_resource --wait
   run_once: true
+  tags: keystone_pacemaker_stop

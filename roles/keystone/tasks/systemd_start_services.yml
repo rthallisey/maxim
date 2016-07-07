@@ -4,3 +4,4 @@
     name: httpd
     state: started
   become: yes
+  tags: keystone_systemd_start
