@@ -19,3 +19,9 @@
   when: "inventory_hostname in groups ['cinder-volume']
         and 'cinder-volume' in pacemaker_managed_services"
   tags: cinder_volume_pacemaker_stop
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [cinder_api_pacemaker_stop, cinder_scheduler_pacemaker_stop,
+        cinder_volume_pacemaker_stop]
