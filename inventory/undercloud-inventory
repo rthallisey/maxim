@@ -3,26 +3,20 @@
 [undercloud]
 localhost  ansible_connection=local
 
-[controller]
-localhost  ansible_connection=local
-
-[compute]
-localhost  ansible_connection=local
-
 [keystone:children]
-controller
+undercloud
 
 [glance-api:children]
-controller
+undercloud
 
 [glance-registry:children]
-controller
+undercloud
 
 [cinder-scheduler:children]
-controller
+undercloud
 
 [cinder-api:children]
-controller
+undercloud
 
 [cinder-volume:children]
-controller
+undercloud

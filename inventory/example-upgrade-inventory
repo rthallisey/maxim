@@ -1,3 +1,6 @@
+[undercloud]
+localhost  ansible_connection=local
+
 [controller]
 192.0.2.5
 192.0.2.6
