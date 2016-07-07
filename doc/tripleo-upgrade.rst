@@ -109,3 +109,31 @@ Run a rolling upgrade on the services specified in ``openstack_services``::
 Run an all-at-once upgrade::
 
    ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml all-at-once.yml
+
+Running an Individual Task
+==========================
+
+Every task in the playbook has a ``tag`` associated with it. Specifying a tag
+when running a playbook is a way for an operator to run a single task.
+
+All tags use the follow index::
+
+  <service>_<who_manages_the_service>_<action>
+
+  # Task to stop glance-api through systemd
+  glance_api_systemd_stop
+
+  # Task sync glance's database
+  glance_db_sync
+
+  # All glance pacemaker tasks
+  glance_pacemaker_tasks
+
+Once the operator knows the tag(s), an operator can run a playbook only running
+tasks with the specified tags or skip any task with the specified tag::
+
+   # Stop, db_sync, and start the Glance API
+   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml all-at-once.yml --tags "glance_db_sync,glance_api_systemd_stop,glance_api_systemd_start"
+
+   # Skip all pacemaker tasks for Cinder
+   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml all-at-once.yml --skip-tags "cinder_pacemaker_tasks"
