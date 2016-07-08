@@ -50,8 +50,8 @@ but with a different inventory file. This inventory file is provided in
 
   ansible-playbook -i inventory/undercloud-inventory -e @upgrade_vars.yml rolling.yml
 
-Managing the Update or Upgrade
-==============================
+Setup for an Overcloud Update or Upgrade
+========================================
 
 The operator will use ``upgrade_vars.yml`` to drive the upgrade. Edit
 this file to change what services will be included in the upgrade play by adding
@@ -64,24 +64,24 @@ or removing services from ``openstack_services``.
      - glance
 
 Minor Update
-============
+------------
 
 If the operator wants to update, set ``update_services`` in
-``upgrade_vars.yml`` to yes and run either the ``rolling.yml`` or
-the ``all-at-once.yml`` playbook from above.
-
-::
+``upgrade_vars.yml`` to yes::
 
   update_services: yes
 
-Pacemaker managed services
-==========================
+Choose Pacemaker managed services
+---------------------------------
 
-Pacemaker will be managing services like cinder-volume, rabbitmq, maridb,
+By default, services will be managed by systemd.  In the future, this
+will support things like Docker.
+
+Pacemaker will be  managing services like cinder-volume, rabbitmq, maridb,
 ect...  In ``upgrade-vars.yml``, there will be a minimal set of Pacemaker
 managed services set as defaults. The operator has a choice as to which services
-will be upgraded with Pacemaker. For example, Cinder Volumes by default is
-set to be upgraded with Pacemaker.
+will be upgraded with Pacemaker since this can vary per release. For example,
+Cinder Volumes by default is set to be upgraded with Pacemaker.
 
 ::
 
