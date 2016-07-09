@@ -41,6 +41,21 @@ role.
    [compute]
    192.0.2.8
 
+Repo Update
+===========
+
+In order to get new packages, the operator needs to update repos on all
+nodes.  Look in ``upgrade_vars.yml`` for ``delorean_repo_url`` and change the
+url to a release of choice.
+
+::
+
+   delorean_repo_url: http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master/delorean.repo
+
+Update the repos on all nodes::
+
+   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml repo-setup.yml
+
 Undercloud
 ==========
 
