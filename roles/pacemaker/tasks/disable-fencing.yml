@@ -1,0 +1,6 @@
+---
+- name: Disable Fencing
+  command: /usr/sbin/pcs property set stonith-enabled=false
+  when: "inventory_hostname in groups[{{ item }}]"
+  with_items: "{{ pacemaker_services }}"
+  tags: disable_fencing
