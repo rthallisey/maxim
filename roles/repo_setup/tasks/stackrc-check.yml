@@ -1,8 +1,0 @@
----
-- name: Check stackrc exists
-  stat: path="{{ undercloud_credentials }}"
-  register: stackrc
-  failed_when: not stackrc.stat.exists
-
-- name: Sourcing undercloud credentials
-  shell: source "{{ undercloud_credentials }}"
