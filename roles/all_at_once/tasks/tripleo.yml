@@ -1,4 +1,6 @@
 ---
+- include: delorean_setup.yml
+
 - include: stop_services.yml
 
 - include: update_packages.yml
