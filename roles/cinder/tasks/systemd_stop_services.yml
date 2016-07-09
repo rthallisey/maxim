@@ -3,7 +3,7 @@
   service:
     name: openstack-cinder-api
     state: stopped
-  when: "inventory_hostname in groups ['cinder-api']
+  when: "inventory_hostname in groups['cinder-api']
         and 'cinder-api' not in pacemaker_managed_services"
   tags: cinder_api_systemd_stop
 
@@ -11,7 +11,7 @@
   service:
     name: openstack-cinder-scheduler
     state: stopped
-  when: "inventory_hostname in groups ['cinder-scheduler']
+  when: "inventory_hostname in groups['cinder-scheduler']
         and 'cinder-scheduler' not in pacemaker_managed_services"
   tags: cinder_scheduler_systemd_stop
 
@@ -19,6 +19,6 @@
   service:
     name: openstack-cinder-volume
     state: stopped
-  when: "inventory_hostname in groups ['cinder-volume']
+  when: "inventory_hostname in groups['cinder-volume']
         and 'cinder-volume' not in pacemaker_managed_services"
   tags: cinder_volume_systemd_stop

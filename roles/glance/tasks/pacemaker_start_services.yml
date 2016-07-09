@@ -9,7 +9,7 @@
 - name: Starting glance-registry service
   command: "/usr/sbin/pcs resource enable openstack-glance-registry"
   run_once: true
-  when: "inventory_hostname in groups ['glance-registry']
+  when: "inventory_hostname in groups['glance-registry']
         and 'glance-registry' in pacemaker_managed_services"
   tags: glance_registry_pacemaker_start
 

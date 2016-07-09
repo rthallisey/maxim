@@ -3,6 +3,6 @@
   shell: cinder-manage db_sync
   run_once: true
   become: true
-  when: "inventory_hostname in groups ['cinder-api']
+  when: "inventory_hostname in groups['cinder-api']
         and {{ not update_services | bool }}"
   tags: cinder_db_sync

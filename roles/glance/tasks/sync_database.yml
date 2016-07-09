@@ -3,6 +3,6 @@
   shell: glance-manage db_sync
   run_once: true
   become: true
-  when: "inventory_hostname in groups ['glance-api']
+  when: "inventory_hostname in groups['glance-api']
         and {{ not update_services | bool }}"
   tags: glance_db_sync
