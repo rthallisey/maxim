@@ -46,7 +46,7 @@ Repo Update
 
 In order to get new packages, the operator needs to update repos on all
 nodes.  Look in ``upgrade-vars.yml`` for ``delorean_repo_url`` and change the
-url to a release of choice.
+url to the release of choice.
 
 ::
 
@@ -81,7 +81,7 @@ or removing services from ``openstack_services``.
 Minor Update
 ------------
 
-If the operator wants to update, set ``update_services`` in
+If the operator wants to only update, set ``update_services`` in
 ``upgrade-vars.yml`` to yes::
 
   update_services: yes
@@ -95,8 +95,8 @@ will support things like Docker.
 Pacemaker will be  managing services like cinder-volume, rabbitmq, maridb,
 ect...  In ``upgrade-vars.yml``, there will be a minimal set of Pacemaker
 managed services set as defaults. The operator has a choice as to which services
-will be upgraded with Pacemaker since this can vary per release. For example,
-Cinder Volumes by default is set to be upgraded with Pacemaker.
+will be managed by Pacemaker since this can vary per release. For example,
+Cinder Volumes by default is set to be managed by Pacemaker.
 
 ::
 
@@ -114,7 +114,7 @@ Running an Upgrade
 
 The operator can run a rolling upgrade or the traditional all-at-once
 upgrade.  The rolling upgrade will perform the upgrade tasks one service
-at a time on a percentage of the services.  The all-at-once approach will
+at a time on a percentage of the nodes.  The all-at-once approach will
 stop all services, update the packages, db_sync, and restart all the services.
 
 Run a rolling upgrade on the services specified in ``openstack_services``::
@@ -133,7 +133,7 @@ when running a playbook is a way for an operator to run a single task.
 
 All tags use the follow index::
 
-  <service>_<who_manages_the_service>_<action>
+  <service>_<what_manages_the_service>_<action>
 
   # Task to stop glance-api through systemd
   glance_api_systemd_stop
@@ -147,7 +147,7 @@ All tags use the follow index::
 Once the operator knows the tag(s), an operator can run a playbook only running
 tasks with the specified tags or skip any task with the specified tag::
 
-   # Stop, db_sync, and start the Glance API
+   # Stop, db_sync, and start Glance API
    ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade-vars.yml all-at-once.yml --tags "glance_db_sync,glance_api_systemd_stop,glance_api_systemd_start"
 
    # Skip all pacemaker tasks for Cinder
