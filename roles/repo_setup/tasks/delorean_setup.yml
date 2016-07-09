@@ -2,7 +2,9 @@
 - name: Removing delorean repo file
   file: path=/etc/yum.repos.d/delorean.repo state=absent
   become: yes
+  tags: delorean_setup
 
 - name: Pulling the new repo
   get_url: url="{{ delorean_repo_url }}" dest=/etc/yum.repos.d/delorean.repo
   become: yes
+  tags: delorean_setup
