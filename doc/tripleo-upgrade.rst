@@ -21,7 +21,7 @@ of the overcloud.
 
 ::
 
-   ansible-playbook -i 'undercloud,' -c local generate-inventory.yml
+   ansible-playbook -i inventory/undercloud-inventory generate-inventory.yml
 
 The inventory file will be placed in ``/etc/tripleo/upgrade-inventory`` and will
 contain a map of the currently deployed overcloud where each server's
