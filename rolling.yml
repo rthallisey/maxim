@@ -1,9 +1,4 @@
 ---
-- hosts: all
-  roles:
-    - { role: repo_setup,
-        tags: repo_setup }
-
 - hosts: keystone
   roles:
     - { role: keystone,
