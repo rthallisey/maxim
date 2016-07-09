@@ -17,6 +17,9 @@ openstack_services:
   - glance
   - cinder
 
+database_backup_dir: /var/tmp/mysql_upgrade_osp
+backup_database: yes
+backup_flags: "--defaults-extra-file=/root/.my.cnf -u root --flush-privileges --all-databases --single-transaction"
 
 ##############################
 # PROJECT SPECIFIC VARIABLES #

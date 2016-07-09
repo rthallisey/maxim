@@ -1,0 +1,17 @@
+---
+- name: Check if backup directory exists
+  stat: path={{ database_backup_dir }}
+  register: info
+
+- fail: msg="{{ database_backup_dir }} exists already. An upgrade may have
+             failed previously. Pick a new location to backup your database"
+  when: info.stat.exists == True
+
+- name: Creating backup directory
+  file: path={{ database_backup_dir }} state=directory
+
+- name: Backup database
+  command: "mysqldump {{ backup_flags }} > {{ database_backup_dir }}/openstack_database.sql"
+
+- name: Save database config files
+  command: cp -rdp /etc/my.cnf* "{{ database_backup_dir }}"
