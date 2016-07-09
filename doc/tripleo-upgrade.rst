@@ -45,7 +45,7 @@ Repo Update
 ===========
 
 In order to get new packages, the operator needs to update repos on all
-nodes.  Look in ``upgrade_vars.yml`` for ``delorean_repo_url`` and change the
+nodes.  Look in ``upgrade-vars.yml`` for ``delorean_repo_url`` and change the
 url to a release of choice.
 
 ::
@@ -54,7 +54,7 @@ url to a release of choice.
 
 Update the repos on all nodes::
 
-   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml repo-setup.yml
+   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade-vars.yml repo-setup.yml
 
 Undercloud
 ==========
@@ -63,12 +63,12 @@ The undercloud upgrade will follow the same process as the overcloud upgrade,
 but with a different inventory file. This inventory file is provided in
 ``inventory/undercloud-inventory``. Upgrade the undercloud with the following::
 
-  ansible-playbook -i inventory/undercloud-inventory -e @upgrade_vars.yml rolling.yml
+  ansible-playbook -i inventory/undercloud-inventory -e @upgrade-vars.yml rolling.yml
 
 Setup for an Overcloud Update or Upgrade
 ========================================
 
-The operator will use ``upgrade_vars.yml`` to drive the upgrade. Edit
+The operator will use ``upgrade-vars.yml`` to drive the upgrade. Edit
 this file to change what services will be included in the upgrade play by adding
 or removing services from ``openstack_services``.
 
@@ -82,7 +82,7 @@ Minor Update
 ------------
 
 If the operator wants to update, set ``update_services`` in
-``upgrade_vars.yml`` to yes::
+``upgrade-vars.yml`` to yes::
 
   update_services: yes
 
@@ -119,11 +119,11 @@ stop all services, update the packages, db_sync, and restart all the services.
 
 Run a rolling upgrade on the services specified in ``openstack_services``::
 
-   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml rolling.yml
+   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade-vars.yml rolling.yml
 
 Run an all-at-once upgrade::
 
-   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml all-at-once.yml
+   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade-vars.yml all-at-once.yml
 
 Running an Individual Task
 ==========================
@@ -148,7 +148,7 @@ Once the operator knows the tag(s), an operator can run a playbook only running
 tasks with the specified tags or skip any task with the specified tag::
 
    # Stop, db_sync, and start the Glance API
-   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml all-at-once.yml --tags "glance_db_sync,glance_api_systemd_stop,glance_api_systemd_start"
+   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade-vars.yml all-at-once.yml --tags "glance_db_sync,glance_api_systemd_stop,glance_api_systemd_start"
 
    # Skip all pacemaker tasks for Cinder
-   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade_vars.yml all-at-once.yml --skip-tags "cinder_pacemaker_tasks"
+   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade-vars.yml all-at-once.yml --skip-tags "cinder_pacemaker_tasks"
