@@ -17,6 +17,7 @@ openstack_services:
   - glance
   - cinder
 
+
 ##############################
 # PROJECT SPECIFIC VARIABLES #
 ##############################
@@ -27,3 +28,4 @@ openstack_services:
 undercloud_credentials: "/home/stack/stackrc"
 pacemaker_managed_services:
   - cinder-volume
+delorean_repo_url: http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master/delorean.repo
