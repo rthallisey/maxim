@@ -24,9 +24,6 @@
     - cinder-api
     - cinder-scheduler
     - cinder-volume
-  vars:
-    pacemaker_services:
-      - cinder-volume
   roles:
     - { role: cinder,
         tags: cinder,

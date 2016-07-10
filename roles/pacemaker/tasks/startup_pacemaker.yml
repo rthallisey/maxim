@@ -2,7 +2,7 @@
 - name: Starting up Pacemaker
   command: /usr/sbin/pcs cluster start --all
   when: "inventory_hostname in groups[{{ item }}]"
-  with_items: "{{ pacemaker_services }}"
+  with_items: "{{ pacemaker_managed_services }}"
   tags: pacemaker_start
 
 - name: Waiting for Pacemaker to start
@@ -12,5 +12,5 @@
   retries: 10
   delay: 5
   when: "inventory_hostname in groups[{{ item }}]"
-  with_items: "{{ pacemaker_services }}"
+  with_items: "{{ pacemaker_managed_services }}"
   tags: pacemaker_start
