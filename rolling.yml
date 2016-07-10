@@ -25,6 +25,6 @@
 # Should this be only on 1 DB node? (database[0])
 - hosts: all
   roles:
-    - { role: database,
-        tags: database_backup,
-        when: database_backup | bool }
+    - { role: mariadb,
+        tags: mariadb,
+        when: "'mariadb' in openstack_services" }
