@@ -14,12 +14,14 @@ project: tripleo
 update_services: no
 
 # Comment out any services you don't want to upgrade/update
+# For an all-at-once upgrade, services will be upgraded in this order
 openstack_services:
   - keystone
   - glance
   - cinder
   - mariadb
 
+database_backup_dir: /var/tmp/mysql_upgrade_osp
 
 ##############################
 # PROJECT SPECIFIC VARIABLES #
