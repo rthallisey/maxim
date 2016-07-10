@@ -1,0 +1,16 @@
+---
+- name: Starting up Pacemaker
+  command: /usr/sbin/pcs cluster start --all
+  when: "inventory_hostname in groups[{{ item }}]"
+  with_items: "{{ pacemaker_services }}"
+  tags: pacemaker_start
+
+- name: Waiting for Pacemaker to start
+  command: systemctl is-active pacemaker
+  register: pacemaker_result
+  until: pacemaker_result.stdout == 'active'
+  retries: 10
+  delay: 5
+  when: "inventory_hostname in groups[{{ item }}]"
+  with_items: "{{ pacemaker_services }}"
+  tags: pacemaker_start
