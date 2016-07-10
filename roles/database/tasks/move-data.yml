@@ -1,0 +1,11 @@
+---
+- name: Check if backup directory exists
+  stat: path={{ database_backup_dir }}
+  register: info
+
+- fail: msg="{{ database_backup_dir }} doesn't exist. The backup-database play
+             should be run before /var/lib/mysql is backed up."
+  when: info.stat.exists == True
+
+- name: Moving /var/lib/mysql to backup dir
+  command: mv /var/lib/mysql "{{ database_backup_dir }}"
