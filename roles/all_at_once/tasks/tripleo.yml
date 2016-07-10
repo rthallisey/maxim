@@ -1,14 +1,9 @@
 ---
 - include: stop_services.yml
 
-# Should this be only on 1 DB node? (database[0])
-- include: stop_database.yml
-
 - include: update_packages.yml
 
 - include: sync_database.yml
   when: "{{ not update_services | bool }}"
-
-- include: start_database.yml
 
 - include: start_services.yml
