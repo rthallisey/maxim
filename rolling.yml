@@ -1,4 +1,9 @@
 ---
+- hosts: all
+  roles:
+    - { role: puppet_modules,
+        tags: puppet_modules }
+
 - hosts: keystone
   roles:
     - { role: keystone,

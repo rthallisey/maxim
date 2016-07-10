@@ -1,4 +1,7 @@
 ---
+- include: "{{ playbook_dir }}/roles/puppet_modules/tasks/update_packages.yml"
+  serial: "30%"
+
 - include: "{{ playbook_dir }}/roles/{{ item }}/tasks/update_packages.yml"
   serial: "30%"
   with_items: "{{ openstack_services }}"

@@ -1,0 +1,5 @@
+---
+- name: Update openstack puppet modules
+  yum:
+    name: openstack-puppet-modules
+    state: latest
