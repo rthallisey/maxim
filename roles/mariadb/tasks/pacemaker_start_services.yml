@@ -1,0 +1,12 @@
+---
+- name: Starting mariadb service
+  command: "/usr/sbin/pcs resource enable galera"
+  run_once: true
+  when: "inventory_hostname in groups['mariadb']
+        and 'mariadb' in pacemaker_managed_services"
+  tags: mariadb_pacemaker_start
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: mariadb_pacemaker_start

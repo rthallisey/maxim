@@ -1,11 +1,4 @@
 ---
-# Should this be only on 1 DB node? (database[0])
-- hosts: all
-  roles:
-    - { role: database,
-        tags: backup_database,
-        when: backup_database | bool }
-
 - hosts: all
   roles:
     - all_at_once

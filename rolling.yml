@@ -1,11 +1,4 @@
 ---
-# Should this be only on 1 DB node? (database[0])
-- hosts: all
-  roles:
-    - { role: database,
-        tags: backup_database,
-        when: backup_database | bool }
-
 - hosts: keystone
   roles:
     - { role: keystone,
@@ -28,3 +21,10 @@
     - { role: cinder,
         tags: cinder,
         when: "'cinder' in openstack_services" }
+
+# Should this be only on 1 DB node? (database[0])
+- hosts: all
+  roles:
+    - { role: database,
+        tags: database_backup,
+        when: database_backup | bool }

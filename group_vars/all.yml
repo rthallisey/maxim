@@ -16,9 +16,10 @@ openstack_services:
   - keystone
   - glance
   - cinder
+  - mariadb
 
 database_backup_dir: /var/tmp/mysql_upgrade_osp
-backup_database: yes
+database_backup: yes
 backup_flags: "--defaults-extra-file=/root/.my.cnf -u root --flush-privileges --all-databases --single-transaction"
 
 ##############################
@@ -31,4 +32,5 @@ backup_flags: "--defaults-extra-file=/root/.my.cnf -u root --flush-privileges --
 undercloud_credentials: "/home/stack/stackrc"
 pacemaker_managed_services:
   - cinder-volume
+  - mariadb
 delorean_repo_url: http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master/delorean.repo

@@ -1,0 +1,9 @@
+---
+- name: Starting mariadb service
+  service:
+    name: galerae
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['mariadb']
+        and 'mariadb' not in pacemaker_managed_services"
+  tags: mariadb_systemd_start

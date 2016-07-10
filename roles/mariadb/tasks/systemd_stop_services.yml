@@ -1,0 +1,15 @@
+---
+- include: database_backup.yml
+  tags: database_backup
+
+- name: Stopping mariadb service
+  service:
+    name: galera
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['mariadb']
+        and 'mariadb' not in pacemaker_managed_services"
+  tags: mariadb_systemd_stop
+
+- include: move_data.yml
+  tags: database_backup
