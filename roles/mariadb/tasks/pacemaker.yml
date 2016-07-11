@@ -1,5 +1,16 @@
 ---
+# Only backup once on the first database node
+- include: database_backup.yml
+  when: "inventory_hostname in groups['mariadb'][0]"
+  tags: database_backup
+
 - include: pacemaker_stop_services.yml
+
+- include: move_data.yml
+  when: "inventory_hostname in groups['mariadb']"
+  tags: database_backup
+
+# In a rolling update pacemaker serivce isn't being shutdown
 
 - include: update_packages.yml
 

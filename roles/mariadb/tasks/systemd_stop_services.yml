@@ -1,9 +1,4 @@
 ---
-- include: database_backup.yml
-  when: "inventory_hostname in groups['mariadb']
-        and 'mariadb' not in pacemaker_managed_services"
-  tags: database_backup
-
 - name: Stopping mariadb service
   service:
     name: galera
@@ -12,8 +7,3 @@
   when: "inventory_hostname in groups['mariadb']
         and 'mariadb' not in pacemaker_managed_services"
   tags: mariadb_systemd_stop
-
-- include: move_data.yml
-  when: "inventory_hostname in groups['mariadb']
-        and 'mariadb' not in pacemaker_managed_services"
-  tags: database_backup

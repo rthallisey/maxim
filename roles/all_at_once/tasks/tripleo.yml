@@ -1,7 +1,12 @@
 ---
 - include: stop_services.yml
 
-- include: shutdown_database.yml
+- include: database_backup.yml
+
+# Always stop the database service last
+- include: stop_mariadb.yml
+
+- include: move_data.yml
 
 - include: shutdown_pacemaker.yml
 

@@ -1,0 +1,4 @@
+---
+- include: "{{ playbook_dir }}/roles/mariadb/database_backup.yml"
+  when: "inventory_hostname in groups['mariadb']"
+  tags: database_backup

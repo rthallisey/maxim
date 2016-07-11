@@ -8,15 +8,3 @@
   serial: "30%"
   when: "'mariadb' != item"
   with_items: "{{ pacemaker_managed_services }}"
-
-# Always stop the database service last
-- include: "{{ playbook_dir }}/roles/mariadb/tasks/systemd_stop_services.yml"
-  serial: "30%"
-  when: "'mariadb' in openstack_services
-         and 'mariadb' not in pacemaker_managed_services"
-
-- include: "{{ playbook_dir }}/roles/mariadb/pacemaker_stop_services.yml"
-  serial: "30%"
-  when: "'mariadb' in pacemaker_managed_services"
-
-- include: "{{ playbook_dir }}/roles/pacemaker/tasks/shutdown_pacemaker.yml"

@@ -1,0 +1,5 @@
+---
+- name: Stopping Pacemaker service
+  command: "/usr/sbin/pcs cluster stop --all"
+  run_once: true
+  tags: pacemaker_stop

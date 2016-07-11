@@ -1,7 +1,4 @@
 ---
-- include: database_'backup.yml
-  tags: database_backup
-
 - include: pacemaker.yml
   when: "'mariadb' in pacemaker_managed_services"
   tags: mariadb_pacemaker_tasks
