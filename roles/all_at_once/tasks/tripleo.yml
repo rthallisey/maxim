@@ -1,6 +1,8 @@
 ---
 - include: stop_services.yml
 
+- include: disable_fencing.yml
+
 - include: database_backup.yml
 
 # Always stop the database service last

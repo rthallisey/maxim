@@ -16,6 +16,13 @@ The database upgrade workflow involves a series of steps that will preseve the
 state of the database while upgrading the service and the services that depend
 on it.
 
+Disable Pacemaker Fencing
+-------------------------
+
+If the operator is managing MariaDB with pacemaker, fencing will be turned off
+before proceeding. This is done in case a serive fails to stop causing the node
+to get fenced by pacemaker.
+
 Backup
 ------
 
