@@ -45,4 +45,5 @@ Moving /var/lib/mysql and Updating the Package
 ----------------------------------------------
 
 For additional safely, the directory ``/var/lib/mysql`` will be saved to
-``database_back_dir``.  Then, the MariaDB packages will be updated.
+``database_back_dir``.  This occurs after MariaDB has stopped. Next, the
+the MariaDB package is updated.
