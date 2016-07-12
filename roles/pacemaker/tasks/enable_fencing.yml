@@ -1,6 +1,7 @@
 ---
-- name: Disable Fencing
-  command: /usr/sbin/pcs property set stonith-enabled=false
+# Would this only happend on Mariadb[0]?
+- name: Enable Fencing
+  command: pcs -f /var/lib/pacemaker/cib/cib.xml property set stonith-enabled=true
   when: "inventory_hostname in groups[{{ item }}]"
   with_items: "{{ pacemaker_managed_services }}"
   tags: disable_fencing

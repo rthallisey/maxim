@@ -1,4 +1,5 @@
 ---
+# Would this only happend on Mariadb[0]?
 - name: Disable Fencing
   command: /usr/sbin/pcs property set stonith-enabled=false
   when: "inventory_hostname in groups[{{ item }}]"
