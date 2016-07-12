@@ -1,4 +1,6 @@
 ---
+- include: disable_fencing.yml
+
 - name: Check if backup directory exists
   stat: path={{ database_backup_dir }}
   register: info

@@ -30,7 +30,7 @@
   command: "rm -rf {{ database_backup_dir }}"
   register: result
 
-- include: "{{ playbook_dir }}/roles/pacemaker/tasks/shutdown_pacemaker.yml"
+- include: enable_fencing.yml
 
 # Uncomment when the services are in the upgrade pipeline
 # - name: Pin Messages Nova
