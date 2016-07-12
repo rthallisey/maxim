@@ -1,0 +1,46 @@
+---
+# Make sure Galera replication is active
+# https://github.com/openstack/tripleo-heat-templates/blob/master/extraconfig/tasks/major_upgrade_controller_pacemaker_1.sh#L153
+
+# add mysql user and 755 perms
+- name: Creating /var/lib/mysql
+  file: path=/var/lib/mysql state=directory
+
+# restore the directory selinux label
+
+# Make sure result is correct
+- name: Initialize the new database
+  command: mysql_install_db --datadir=/var/lib/mysql --user=mysql
+  register: result
+
+# Make sure result is correct
+- name: Initialize Galera
+  command: mysqld_safe --wsrep-new-cluster
+  register: result
+
+- name: Restore the database
+  command: "mysql -u root < {{ database_backup_dri }}/openstack_database.sql"
+  register: result
+
+- name: Shutting down the database after the backup
+  command: mysqladmin -u root shutdown
+  register: result
+
+- name: Remove database backup directory
+  command: "rm -rf {{ database_backup_dir }}"
+  register: result
+
+- include: "{{ playbook_dir }}/roles/pacemaker/tasks/shutdown_pacemaker.yml"
+
+# Uncomment when the services are in the upgrade pipeline
+# - name: Pin Messages Nova
+#   command: crudini --set /etc/nova/nova.conf upgrade_levels compute "$upgrade_level_nova_compute"
+#   when: "inventory_hostname in groups['nova']"
+
+# - name: Pin Messages Ceilometer
+#   command: crudini --set /etc/ceilometer/ceilometer.conf DEFAULT rpc_backend rabbit
+#   when: "inventory_hostname in groups['ceilometer']"
+
+# - name: Pin Messages Swift
+#   command: crudini --set /etc/swift/proxy-server.conf pipeline:main pipeline "catch_errors healthcheck cache ratelimit tempurl formpost authtoken keystone staticweb proxy-logging proxy-server"
+#   when: "inventory_hostname in groups['swift']"

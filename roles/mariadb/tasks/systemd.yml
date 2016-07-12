@@ -12,4 +12,8 @@
 
 - include: update_packages.yml
 
+- include: database_setup.yml
+  when: "inventory_hostname in groups['mariadb']"
+  tags: database_setup
+
 - include: systemd_start_services.yml
