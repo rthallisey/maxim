@@ -1,9 +1,21 @@
 ---
-- name: Update heat packages
+- name: Update heat api package
   yum:
-    name: openstack-heat
+    name: openstack-heat-api
     state: latest
-  when: "inventory_hostname in groups['heat-api']
-         or inventory_hostname in groups['heat-api-cfn']
-         or inventory_hostname in groups['heat-engine']"
+  when: "inventory_hostname in groups['heat-api']"
+  tags: heat_package_update
+
+- name: Update heat api cfn package
+  yum:
+    name: openstack-heat-api-cfn
+    state: latest
+  when: "inventory_hostname in groups['heat-api-cfn']"
+  tags: heat_package_update
+
+- name: Update heat engine package
+  yum:
+    name: openstack-heat-engine
+    state: latest
+  when: "inventory_hostname in groups['heat-engine']"
   tags: heat_package_update
