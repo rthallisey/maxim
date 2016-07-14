@@ -3,3 +3,7 @@
   yum:
     name: openstack-cinder
     state: latest
+  when: "inventory_hostname in groups['cinder-api']
+         or inventory_hostname in groups['cinder-volume']
+         or inventory_hostname in groups['cinder-scheduler']"
+  tags: cinder_package_update

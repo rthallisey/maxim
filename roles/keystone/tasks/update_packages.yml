@@ -3,4 +3,5 @@
   yum:
     name: openstack-keystone
     state: latest
-  when: inventory_hostname in groups['keystone']
+  when: "inventory_hostname in groups['keystone']"
+  tags: keystone_package_update

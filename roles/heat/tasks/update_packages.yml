@@ -4,6 +4,6 @@
     name: openstack-heat
     state: latest
   when: "inventory_hostname in groups['heat-api']
-        or inventory_hostname in groups['heat-api-cfn']
-        or inventory_hostname in groups['heat-engine']"
+         or inventory_hostname in groups['heat-api-cfn']
+         or inventory_hostname in groups['heat-engine']"
   tags: heat_package_update

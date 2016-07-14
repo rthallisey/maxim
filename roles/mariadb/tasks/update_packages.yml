@@ -4,3 +4,4 @@
     name: mariadb
     state: latest
   when: "inventory_hostname in groups['mariadb']"
+  tags: mariadb_package_update
