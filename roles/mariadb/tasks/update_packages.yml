@@ -3,3 +3,4 @@
   yum:
     name: mariadb
     state: latest
+  when: "inventory_hostname in groups['mariadb']"

@@ -4,4 +4,5 @@
     name: httpd
     state: started
   become: yes
+  when: inventory_hostname in groups['keystone']
   tags: keystone_systemd_start

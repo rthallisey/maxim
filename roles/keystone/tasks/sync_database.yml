@@ -3,5 +3,6 @@
   shell: keystone-manage db_sync
   run_once: true
   become: true
-  when: "{{ not update_services | bool }}"
+  when: "{{ not update_services | bool }}
+         and inventory_hostname in groups['keystone']"
   tags: keystone_db_sync

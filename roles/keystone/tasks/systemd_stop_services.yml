@@ -4,4 +4,5 @@
     name: httpd
     state: stopped
   become: yes
+  when: inventory_hostname in groups['keystone']
   tags: keystone_systemd_stop
