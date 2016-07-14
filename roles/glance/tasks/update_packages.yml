@@ -3,3 +3,6 @@
   yum:
     name: openstack-glance
     state: latest
+  when: "inventory_hostname in groups['glance-api']
+         or inventory_hostname in groups['glance-registry']"
+  tags: glance_package_update
