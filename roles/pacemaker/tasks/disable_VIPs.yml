@@ -1,0 +1,20 @@
+---
+- name: Gathering all Pacemaker managed VIPs
+  command: /usr/sbin/pcs resource show | grep ocf::heartbeat:IPaddr2 | grep Started | awk '{ print $1 }'
+  register: vips
+  tags: disable_vips
+
+- name: Disabling all Pacemaker managed VIPs
+  command: /usr/bin/pcs resource disable {{ item }}
+  with_items: vips.stdout
+  tags: disable_vips
+
+# Check that VIPs have been shutdown
+# - name: Waiting for all Pacemaker VIPs to shutdown
+#   command: /usr/sbin/pcs status --full | grep {{ item }} | grep -v Clone | { egrep "$nodes_local" || true; }
+#   register: status
+#   until: status.stdout == 'disabled'
+#   retries: 10
+#   delay: 5
+#   with_items: vips.stdout
+#   tags: disable_vips
