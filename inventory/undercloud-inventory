@@ -20,3 +20,12 @@ undercloud
 
 [cinder-volume:children]
 undercloud
+
+[heat-api:children]
+undercloud
+
+[heat-api-cfi:children]
+undercloud
+
+[heat-engine:children]
+undercloud

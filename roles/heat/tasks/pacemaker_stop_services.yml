@@ -1,0 +1,26 @@
+---
+- name: Stopping heat-api service
+  command: "/usr/sbin/pcs resource disable openstack-heat-api"
+  run_once: true
+  when: "inventory_hostname in groups['heat-api']
+        and 'heat-api' in pacemaker_managed_services"
+  tags: heat_api_pacemaker_stop
+
+- name: Stopping heat-api-cfn service
+  command: "/usr/sbin/pcs resource disable openstack-heat-api-cfn"
+  run_once: true
+  when: "inventory_hostname in groups['heat-api-cfn']
+        and 'heat-api-cfn' in pacemaker_managed_services"
+  tags: heat_api_cfn_pacemaker_stop
+
+- name: Stopping heat-engine service
+  command: "/usr/sbin/pcs resource disable openstack-heat-engine"
+  run_once: true
+  when: "inventory_hostname in groups['heat-engine']
+        and 'heat-engine' in pacemaker_managed_services"
+  tags: heat_engine_pacemaker_stop
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [heat_api_pacemaker_stop, heat_api_cfn_pacemaker_stop, heat_engine_pacemaker_stop]

@@ -1,0 +1,27 @@
+---
+- name: Stopping heat-api service
+  service:
+    name: openstack-heat-api
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['heat-api']
+        and 'heat-api' not in pacemaker_managed_services"
+  tags: heat_api_systemd_stop
+
+- name: Stopping heat-api-cfn service
+  service:
+    name: openstack-heat-api-cfn
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['heat-api-cfn']
+        and 'heat-api-cfn' not in pacemaker_managed_services"
+  tags: heat_api_cfn_systemd_stop
+
+- name: Stopping heat-engine service
+  service:
+    name: openstack-heat-engine
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['heat-engine']
+        and 'heat-engine' not in pacemaker_managed_services"
+  tags: heat_engine_systemd_stop

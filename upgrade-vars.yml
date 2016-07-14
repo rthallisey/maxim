@@ -19,6 +19,7 @@ openstack_services:
   - keystone
   - glance
   - cinder
+  - heat
   - mariadb
 
 database_backup_dir: /var/tmp/mysql_upgrade_osp

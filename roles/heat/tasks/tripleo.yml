@@ -1,0 +1,12 @@
+---
+- include: pacemaker.yml
+  when: "'heat-api' in pacemaker_managed_services
+        or 'heat-api-cfn' in pacemaker_managed_services
+        or 'heat-engine' in pacemaker_managed_services"
+  tags: heat_pacemaker_tasks
+
+- include: systemd.yml
+  when: "'heat-api' not in pacemaker_managed_services
+        or 'heat-api-cfn' in pacemaker_managed_services
+        or 'heat-engine' not in pacemaker_managed_services"
+  tags: heat_systemd_tasks

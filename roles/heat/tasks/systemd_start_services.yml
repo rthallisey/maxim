@@ -1,0 +1,27 @@
+---
+- name: Starting heat-api service
+  service:
+    name: openstack-heat-api
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['heat-api']
+        and 'heat-api' not in pacemaker_managed_services"
+  tags: heat_api_systemd_start
+
+- name: Starting heat-api-cfn service
+  service:
+    name: openstack-heat-api-cfn
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['heat-api-cfn']
+        and 'heat-api-cfn' not in pacemaker_managed_services"
+  tags: heat_api_cfn_systemd_start
+
+- name: Starting heat-engine service
+  service:
+    name: openstack-heat-engine
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['heat-engine']
+        and 'heat-engine' not in pacemaker_managed_services"
+  tags: heat_engine_systemd_start

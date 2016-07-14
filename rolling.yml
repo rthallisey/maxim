@@ -27,6 +27,15 @@
         tags: cinder,
         when: "'cinder' in openstack_services" }
 
+- hosts:
+    - heat-api
+    - heat-api-cfn
+    - heat-engine
+  roles:
+    - { role: heat,
+        tags: heat,
+        when: "'heat' in openstack_services" }
+
 # Should this be only on 1 DB node? (database[0])
 - hosts: all
   roles:
