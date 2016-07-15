@@ -1,0 +1,10 @@
+---
+- include: "{{ playbook_dir }}/roles/mariadb/tasks/pacemaker.yml"
+  when: "'mariadb' in openstack_services
+         and 'mariadb' in pacemaker_managed_services"
+  tags: mariadb_pacemaker_tasks
+
+- include: "{{ playbook_dir }}/roles/mariadb/tasks/systemd.yml"
+  when: "'mariadb' in openstack_services
+         and 'mariadb' not in pacemaker_managed_services"
+  tags: mariadb_systemd_tasks

@@ -1,5 +1,0 @@
----
-- include: "{{ playbook_dir }}/roles/mariadb/move_data.yml"
-  when: "'mariadb' in openstack_services
-          and inventory_hostname in groups['mariadb']"
-  tags: database_backup

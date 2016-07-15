@@ -3,18 +3,8 @@
 
 - include: disable_fencing.yml
 
-- include: database_backup.yml
-
-# Always stop the database service last
-- include: stop_mariadb.yml
-
-- include: move_data.yml
-
-- include: shutdown_pacemaker.yml
-
-- include: update_packages.yml
-
-- include: startup_database.yml
+# Database management is always stopped last and started first
+- include: mariadb_upgrade.yml
 
 - include: sync_database.yml
   when: "{{ not update_services | bool }}"

@@ -1,2 +1,0 @@
----
-- include: "{{ playbook_dir }}/roles/pacemaker/tasks/disable_fencing.yml"

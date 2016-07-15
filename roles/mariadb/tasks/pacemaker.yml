@@ -7,11 +7,17 @@
 - include: pacemaker_stop_services.yml
 
 - include: move_data.yml
-  when: "inventory_hostname in groups['mariadb']"
+  when: "inventory_hostname in groups['mariadb'][0]"
   tags: database_backup
 
-# In a rolling update pacemaker serivce isn't being shutdown
+- include: shutdown_pacemaker.yml
 
 - include: update_packages.yml
+
+- include: database_setup.yml
+  when: "inventory_hostname in groups['mariadb'][0]"
+  tags: database_setup
+
+- include: startup_pacemaker.yml
 
 - include: pacemaker_start_services.yml
