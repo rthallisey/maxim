@@ -21,7 +21,8 @@ openstack_services:
 
 database_backup_dir: /var/tmp/mysql_upgrade_osp
 database_backup: yes
-backup_flags: "--defaults-extra-file=/root/.my.cnf -u root --flush-privileges --all-databases --single-transaction"
+#backup_flags: "--defaults-extra-file=/root/.my.cnf -u root --flush-privileges --all-databases --single-transaction"
+backup_flags: "-u root --flush-privileges --all-databases --single-transaction"
 
 ##############################
 # PROJECT SPECIFIC VARIABLES #
@@ -31,7 +32,6 @@ backup_flags: "--defaults-extra-file=/root/.my.cnf -u root --flush-privileges --
 # Tripleo
 ##########
 undercloud_credentials: "/home/stack/stackrc"
-pacemaker_managed_services:
-  - cinder-volume
-  - mariadb
+# pacemaker is a noop
+pacemaker_managed_services: pacemaker
 delorean_repo_url: http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master/delorean.repo
