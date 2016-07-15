@@ -1,0 +1,3 @@
+---
+# In case there are no pacemaker_managed_services, this file will be a noop
+- debug:  msg="No pacemaker managed services to stop"
