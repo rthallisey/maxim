@@ -1,7 +1,7 @@
 ---
 - name: Shutting down Pacemaker
   command: /usr/sbin/pcs cluster stop --all
-  when: "inventory_hostname in groups[{{ item }}]"
+  when: "inventory_hostname in groups[item]"
   with_items: "{{ pacemaker_managed_services }}"
   tags: pacemaker_stop
 
@@ -11,6 +11,6 @@
   until: pacemaker_result.stdout == 'inactive'
   retries: 10
   delay: 5
-  when: "inventory_hostname in groups[{{ item }}]"
+  when: "inventory_hostname in groups[item]"
   with_items: "{{ pacemaker_managed_services }}"
   tags: pacemaker_stop
