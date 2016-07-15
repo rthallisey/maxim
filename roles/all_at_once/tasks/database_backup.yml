@@ -1,4 +1,5 @@
 ---
-- include: "{{ playbook_dir }}/roles/mariadb/database_backup.yml"
-  when: "inventory_hostname in groups['mariadb']"
+- include: "{{ playbook_dir }}/roles/mariadb/tasks/database_backup.yml"
+  when: "'mariadb' in openstack_services
+          and inventory_hostname in groups['mariadb']"
   tags: database_backup
