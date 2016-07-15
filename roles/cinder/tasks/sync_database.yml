@@ -1,6 +1,6 @@
 ---
 - name: Run Cinder DB sync
-  shell: cinder-manage db_sync
+  shell: cinder-manage db sync
   run_once: true
   become: true
   when: "inventory_hostname in groups['cinder-api']
