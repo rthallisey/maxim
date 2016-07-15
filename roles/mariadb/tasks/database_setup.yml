@@ -1,22 +1,24 @@
 ---
-# Make sure Galera replication is active
-# https://github.com/openstack/tripleo-heat-templates/blob/master/extraconfig/tasks/major_upgrade_controller_pacemaker_1.sh#L153
+- name: Make sure galera.cnf exists
+  file: path=/etc/my.cnf.d/galera.cnf
 
-# add mysql user and 755 perms
+- name: Make sure Galera replication is active
+  blockinfile:
+    dest: /etc/my.cnf.d/galera.cnf
+    block: |
+      [mysqld]
+      wsrep_on = ON
+      wsrep_cluster_address = gcomm://localhost
+
 - name: Creating /var/lib/mysql
-  file: path=/var/lib/mysql state=directory
+  file: path=/var/lib/mysql state=directory owner=mysql group=mysql mode=0755
 
-# restore the directory selinux label
+- name: Restoring the SELinux label
+  command: restorecon -R /var/lib/mysql/
+  become: yes
 
-# Make sure result is correct
 - name: Initialize the new database
   command: mysql_install_db --datadir=/var/lib/mysql --user=mysql
-  register: result
-
-# Make sure result is correct
-- name: Initialize Galera
-  command: mysqld_safe --wsrep-new-cluster
-  register: result
 
 - name: Restore the database
   command: "mysql -u root < {{ database_backup_dri }}/openstack_database.sql"
