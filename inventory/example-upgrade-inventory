@@ -38,3 +38,9 @@ controller
 
 [heat-engine:children]
 controller
+
+[gnocchi-statsd:children]
+controller
+
+[gnocchi-metricd:children]
+controller

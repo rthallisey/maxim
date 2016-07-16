@@ -20,6 +20,7 @@ openstack_services:
   - glance
   - cinder
   - heat
+  - gnocchi
   - mariadb
 
 database_backup_dir: /var/tmp/mysql_upgrade_osp

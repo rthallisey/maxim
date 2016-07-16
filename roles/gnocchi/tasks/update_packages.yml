@@ -1,0 +1,14 @@
+---
+- name: Update gnocchi-metricd package
+  yum:
+    name: openstack-gnocchi-metricd
+    state: latest
+  when: "inventory_hostname in groups['gnocchi-metricd']"
+  tags: gnocchi_package_update
+
+- name: Update gnocchi-statsd package
+  yum:
+    name: openstack-gnocchi-statsd
+    state: latest
+  when: "inventory_hostname in groups['gnocchi-statsd']"
+  tags: gnocchi_package_update

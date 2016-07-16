@@ -1,0 +1,19 @@
+---
+- name: Starting gnocchi-metricd service
+  command: "/usr/sbin/pcs resource enable openstack-gnocchi-metricd"
+  run_once: true
+  when: "inventory_hostname in groups['gnocchi-metricd']
+        and 'gnocchi-metricd' in pacemaker_managed_services"
+  tags: gnocchi_metricd_pacemaker_start
+
+- name: Starting gnocchi-statsd service
+  command: "/usr/sbin/pcs resource enable openstack-gnocchi-statsd"
+  run_once: true
+  when: "inventory_hostname in groups['gnocchi-statsd']
+        and 'gnocchi-statsd' in pacemaker_managed_services"
+  tags: gnocchi_statsd_pacemaker_start
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [gnocchi_metricd_pacemaker_start, gnocchi_statsd_pacemaker_start]
