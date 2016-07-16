@@ -1,6 +1,6 @@
 ---
 - name: Starting keystone service
-  command: "/usr/sbin/pcs resource enable httpd }}"
+  command: "/usr/sbin/pcs resource enable httpd"
   run_once: true
   when: inventory_hostname in groups['keystone']
   tags: keystone_pacemaker_start
