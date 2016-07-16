@@ -4,4 +4,4 @@
   command: pcs -f /var/lib/pacemaker/cib/cib.xml property set stonith-enabled=true
   when: "inventory_hostname in groups[item]"
   with_items: "{{ pacemaker_managed_services }}"
-  tags: disable_fencing
+  tags: enable_fencing
