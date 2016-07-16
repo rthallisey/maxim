@@ -1,22 +1,19 @@
-[undercloud]
-localhost  ansible_connection=local
-
 [controller]
-192.0.2.5
-192.0.2.6
-192.0.2.7
+192.0.2.8
+192.0.2.9
+192.0.2.11
 
 [compute]
-192.0.2.8
+192.0.2.10
 
 [controller:vars]
-ansible_ssh_user= <user>
+ansible_ssh_user=heat-admin
 ansible_become=true
 ansible_become_user=root
 ansible_become_method=sudo
 
 [compute:vars]
-ansible_ssh_user= <user>
+ansible_ssh_user=heat-admin
 ansible_become=true
 ansible_become_user=root
 ansible_become_method=sudo
@@ -28,4 +25,16 @@ controller
 controller
 
 [glance-registry:children]
+controller
+
+[mariadb:children]
+controller
+
+[heat-api:children]
+controller
+
+[heat-api-cfn:children]
+controller
+
+[heat-engine:children]
 controller
