@@ -6,6 +6,8 @@
 # Database management is always stopped last and started first
 - include: mariadb_upgrade.yml
 
+- include: enable_fencing.yml
+
 - include: update_packages.yml
 
 - include: sync_database.yml
