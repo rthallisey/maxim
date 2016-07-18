@@ -1,0 +1,33 @@
+---
+- name: Update swift package
+  yum:
+    name: openstack-swift
+    state: latest
+  when: "inventory_hostname in groups['swift-account']
+         or inventory_hostname in groups['glance-container']
+         or inventory_hostname in groups['glance-object']"
+  tags: swift_package_update
+
+- name: Update swift-account packages
+  yum:
+    name: openstack-swift-account
+    state: latest
+  when: "inventory_hostname in groups['swift-account']
+         or inventory_hostname in groups['swift-account']"
+  tags: swift_package_update
+
+- name: Update swift-container packages
+  yum:
+    name: openstack-swift-container
+    state: latest
+  when: "inventory_hostname in groups['swift-container']
+         or inventory_hostname in groups['swift-container']"
+  tags: swift_package_update
+
+- name: Update swift-object packages
+  yum:
+    name: openstack-swift-object
+    state: latest
+  when: "inventory_hostname in groups['swift-object']
+         or inventory_hostname in groups['swift-object']"
+  tags: swift_package_update

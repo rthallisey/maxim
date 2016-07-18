@@ -1,0 +1,14 @@
+---
+- include: pacemaker.yml
+  when: "'swift-account' not in pacemaker_managed_services
+        or 'swift-container' not in pacemaker_managed_services
+        or 'swift-object' not in pacemaker_managed_services
+        or 'swift-proxy' not in pacemaker_managed_services"
+  tags: swift_pacemaker_tasks
+
+- include: systemd.yml
+  when: "'swift-account' not in pacemaker_managed_services
+        or 'swift-container' not in pacemaker_managed_services
+        or 'swift-object' not in pacemaker_managed_services
+        or 'swift-proxy' not in pacemaker_managed_services"
+  tags: swift_systemd_tasks

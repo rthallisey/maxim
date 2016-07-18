@@ -21,6 +21,7 @@ openstack_services:
   - cinder
   - heat
   - gnocchi
+  - swift
   - mariadb
 
 database_backup_dir: /var/tmp/mysql_upgrade_osp

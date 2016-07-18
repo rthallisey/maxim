@@ -1,0 +1,120 @@
+---
+#################
+# Swift-account #
+#################
+- name: Starting swift-account-auditor service
+  command: "/usr/sbin/pcs resource enable openstack-swift-account-auditor"
+  run_once: true
+  when: "inventory_hostname in groups['swift-account-auditor']
+        and 'swift-account-auditor' in pacemaker_managed_services"
+  tags: swift_account_auditor_pacemaker_start
+
+- name: Starting swift-account-reaper service
+  command: "/usr/sbin/pcs resource enable openstack-swift-account-reaper"
+  run_once: true
+  when: "inventory_hostname in groups['swift-account-reaper']
+        and 'swift-account-reaper' in pacemaker_managed_services"
+  tags: swift_account_reaper_pacemaker_start
+
+- name: Starting swift-account-replicator service
+  command: "/usr/sbin/pcs resource enable openstack-swift-account-replicator"
+  run_once: true
+  when: "inventory_hostname in groups['swift-account-replicator']
+        and 'swift-account-replicator' in pacemaker_managed_services"
+  tags: swift_account_replicator_pacemaker_start
+
+- name: Starting swift-account service
+  command: "/usr/sbin/pcs resource enable openstack-swift-account"
+  run_once: true
+  when: "inventory_hostname in groups['swift-account']
+        and 'swift-account' in pacemaker_managed_services"
+  tags: swift_account_pacemaker_start
+
+###################
+# Swift-container #
+###################
+- name: Starting swift-container-auditor service
+  command: "/usr/sbin/pcs resource enable openstack-container-auditor"
+  run_once: true
+  when: "inventory_hostname in groups['swift-container-auditor']
+        and 'swift-container-auditor' in pacemaker_managed_services"
+  tags: swift_container_auditor_pacemaker_start
+
+- name: Starting swift-container-replicator service
+  command: "/usr/sbin/pcs resource enable openstack-container-replicator"
+  run_once: true
+  when: "inventory_hostname in groups['swift-container-replicator']
+        and 'swift-container-replicator' in pacemaker_managed_services"
+  tags: swift_container_replicator_pacemaker_start
+
+- name: Starting swift-container-updater service
+  command: "/usr/sbin/pcs resource enable openstack-container-updater"
+  run_once: true
+  when: "inventory_hostname in groups['swift-container-updater']
+        and 'swift-container-updater' in pacemaker_managed_services"
+  tags: swift_container_updater_pacemaker_start
+
+- name: Starting swift-container service
+  command: "/usr/sbin/pcs resource enable openstack-container"
+  run_once: true
+  when: "inventory_hostname in groups['swift-container']
+        and 'swift-container' in pacemaker_managed_services"
+  tags: swift_container_pacemaker_start
+
+################
+# Swift-object #
+################
+- name: Starting swift-object-auditor service
+  command: "/usr/sbin/pcs resource enable openstack-object-auditor"
+  run_once: true
+  when: "inventory_hostname in groups['swift-object-auditor']
+        and 'swift-object-auditor' in pacemaker_managed_services"
+  tags: swift_object_auditor_pacemaker_start
+
+- name: Starting swift-object-replicator service
+  command: "/usr/sbin/pcs resource enable openstack-object-replicator"
+  run_once: true
+  when: "inventory_hostname in groups['swift-object-replicator']
+        and 'swift-object-replicator' in pacemaker_managed_services"
+  tags: swift_object_replicator_pacemaker_start
+
+- name: Starting swift-object-updater service
+  command: "/usr/sbin/pcs resource enable openstack-object-updater"
+  run_once: true
+  when: "inventory_hostname in groups['swift-object-updater']
+        and 'swift-object-updater' in pacemaker_managed_services"
+  tags: swift_object_updater_pacemaker_start
+
+- name: Starting swift-object service
+  command: "/usr/sbin/pcs resource enable openstack-object"
+  run_once: true
+  when: "inventory_hostname in groups['swift-object']
+        and 'swift-object' in pacemaker_managed_services"
+  tags: swift_object_pacemaker_start
+
+###############
+# Swift-proxy #
+###############
+- name: Starting swift-proxy service
+  command: "/usr/sbin/pcs resource enable openstack-proxy"
+  run_once: true
+  when: "inventory_hostname in groups['swift-proxy']
+        and 'swift-proxy' in pacemaker_managed_services"
+  tags: swift_proxy_pacemaker_start
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [swift_account_auditor_pacemaker_stop,
+         swift_account_reaper_pacemaker_stop,
+         swift_account_replicator_pacemaker_stop,
+         swift_account_pacemaker_stop,
+         swift_container_auditor_pacemaker_stop,
+         swift_container_replicator_pacemaker_stop,
+         swift_container_updater_pacemaker_stop,
+         swift_container_pacemaker_stop,
+         swift_object_auditor_pacemaker_stop,
+         swift_object_replicator_pacemaker_stop,
+         swift_object_updater_pacemaker_stop,
+         swift_object_pacemaker_stop,
+         swift_proxy_pacemaker_stop]

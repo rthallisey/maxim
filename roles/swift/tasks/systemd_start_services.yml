@@ -1,0 +1,129 @@
+---
+#################
+# Swift-account #
+#################
+- name: Starting swift-account-auditor service
+  service:
+    name: openstack-swift-account-auditor
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-account-auditor']
+        and 'swift-account-auditor' not in pacemaker_managed_services"
+  tags: swift_account_auditor_systemd_start
+
+- name: Starting swift-account-reaper service
+  service:
+    name: openstack-swift-account-reaper
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-account-reaper']
+        and 'swift-account-reaper' not in pacemaker_managed_services"
+  tags: swift_account_reaper_systemd_start
+
+- name: Starting swift-account-replicator service
+  service:
+    name: openstack-swift-account-replicator
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-account-replicator']
+        and 'swift-account-replicator' not in pacemaker_managed_services"
+  tags: swift_account_replicator_systemd_start
+
+- name: Starting swift-account service
+  service:
+    name: openstack-swift-account
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-account']
+        and 'swift-account' not in pacemaker_managed_services"
+  tags: swift_account_systemd_start
+
+###################
+# Swift-container #
+###################
+- name: Starting swift-container-auditor service
+  service:
+    name: openstack-swift-container-auditor
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-container-auditor']
+        and 'swift-container-auditor' not in pacemaker_managed_services"
+  tags: swift_container_auditor_systemd_start
+
+- name: Starting swift-container-replicator service
+  service:
+    name: openstack-swift-container-replicator
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-container-replicator']
+        and 'swift-container-replicator' not in pacemaker_managed_services"
+  tags: swift_container_replicator_systemd_start
+
+- name: Starting swift-container-updater service
+  service:
+    name: openstack-swift-container-updater
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-container-updater']
+        and 'swift-container-updater' not in pacemaker_managed_services"
+  tags: swift_container_updater_systemd_start
+
+- name: Starting swift-container service
+  service:
+    name: openstack-swift-container
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-container']
+        and 'swift-container' not in pacemaker_managed_services"
+  tags: swift_container_systemd_start
+
+################
+# Swift-object #
+################
+- name: Starting swift-object-auditor service
+  service:
+    name: openstack-swift-object-auditor
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-object-auditor']
+        and 'swift-object-auditor' not in pacemaker_managed_services"
+  tags: swift_object_auditor_systemd_start
+
+- name: Starting swift-object-replicator service
+  service:
+    name: openstack-swift-object-replicator
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-object-replicator']
+        and 'swift-object-replicator' not in pacemaker_managed_services"
+  tags: swift_object_replicator_systemd_start
+
+- name: Starting swift-object-updater service
+  service:
+    name: openstack-swift-object-updater
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-object-updater']
+        and 'swift-object-updater' not in pacemaker_managed_services"
+  tags: swift_object_updater_systemd_start
+
+- name: Starting swift-object service
+  service:
+    name: openstack-swift-object
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-object']
+        and 'swift-object' not in pacemaker_managed_services"
+  tags: swift_object_systemd_start
+
+###############
+# Swift-proxy #
+###############
+- name: Starting swift-proxy service
+  service:
+    name: openstack-swift-proxy
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['swift-proxy']
+        and 'swift-proxy' not in pacemaker_managed_services"
+  tags: swift_proxy_systemd_start

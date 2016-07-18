@@ -29,3 +29,15 @@ undercloud
 
 [heat-engine:children]
 undercloud
+
+[swift-account:children]
+undercloud
+
+[swift-container:children]
+undercloud
+
+[swift-object:children]
+undercloud
+
+[swift-proxy:children]
+undercloud

@@ -44,6 +44,16 @@
         tags: gnocchi,
         when: "'gnocchi' in openstack_services" }
 
+- hosts:
+    - swift-account
+    - swift-container
+    - swift-object
+    - swift-proxy
+  roles:
+    - { role: swift,
+        tags: swift,
+        when: "'swift' in openstack_services" }
+
 # Should this be only on 1 DB node? (database[0])
 - hosts: all
   roles:
