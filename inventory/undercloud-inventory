@@ -65,3 +65,18 @@ undercloud
 
 [ironic-inspector:children]
 undercloud
+
+[nova-api:children]
+undercloud
+
+[nova-cert:children]
+undercloud
+
+[nova-compute:children]
+undercloud
+
+[nova-conductor:children]
+undercloud
+
+[nova-scheduler:children]
+undercloud

@@ -1,0 +1,35 @@
+---
+- name: Update nova-api package
+  yum:
+    name: openstack-nova-api
+    state: latest
+  when: "inventory_hostname in groups['nova-api']"
+  tags: nova_package_update
+
+- name: Update nova-cert package
+  yum:
+    name: openstack-nova-cert
+    state: latest
+  when: "inventory_hostname in groups['nova-cert']"
+  tags: nova_package_update
+
+- name: Update nova-compute package
+  yum:
+    name: openstack-nova-compute
+    state: latest
+  when: "inventory_hostname in groups['nova-compute']"
+  tags: nova_package_update
+
+- name: Update nova-conductor package
+  yum:
+    name: openstack-nova-conductor
+    state: latest
+  when: "inventory_hostname in groups['nova-conductor']"
+  tags: nova_package_update
+
+- name: Update nova-scheduler package
+  yum:
+    name: openstack-nova-scheduler
+    state: latest
+  when: "inventory_hostname in groups['nova-scheduler']"
+  tags: nova_package_update

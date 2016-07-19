@@ -83,6 +83,17 @@
         tags: aodh,
         when: "'aodh' in openstack_services" }
 
+- hosts:
+    - nova-api
+    - nova-cert
+    - nova-compute
+    - nova-conductor
+    - nova-scheduler
+  roles:
+    - { role: nova,
+        tags: nova,
+        when: "'nova' in openstack_services" }
+
 # Should this be only on 1 DB node? (database[0])
 - hosts: all
   roles:

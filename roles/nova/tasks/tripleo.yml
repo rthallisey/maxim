@@ -1,0 +1,16 @@
+---
+- include: pacemaker.yml
+  when: "'nova-api' in pacemaker_managed_services
+         or 'nova-cert' in pacemaker_managed_services
+         or 'nova-compute' in pacemaker_managed_services
+         or 'nova-conductor' in pacemaker_managed_services
+         or 'nova-scheduler' in pacemaker_managed_services"
+  tags: nova_pacemaker_tasks
+
+
+- include: systemd.yml
+  when: "'nova-api' not in pacemaker_managed_services
+         or 'nova-cert' not in pacemaker_managed_services
+         or 'nova-compute' not in pacemaker_managed_services
+         or 'nova-conductor' not in pacemaker_managed_services
+         or 'nova-scheduler' not in pacemaker_managed_services"
