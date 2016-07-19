@@ -1,10 +1,14 @@
 ---
 - include: pacemaker.yml
-  when: "'glance-api' in pacemaker_managed_services
-        or 'glance-registry' in pacemaker_managed_services"
-  tags: glance_pacemaker_tasks
+  when: "'ironic-api' in pacemaker_managed_services
+        or 'ironic-conductor' in pacemaker_managed_services
+        or 'ironic-inspector-dnsmasq' in pacemaker_managed_services
+        or 'ironic-inspector' in pacemaker_managed_services"
+  tags: ironic_pacemaker_tasks
 
 - include: systemd.yml
-  when: "'glance-api' not in pacemaker_managed_services
-        or 'glance-registry' not in pacemaker_managed_services"
-  tags: glance_systemd_tasks
+  when: "'ironic-api' not in pacemaker_managed_services
+        or 'ironic-conductor' not in pacemaker_managed_services
+        or 'ironic-inspector-dnsmasq' not in pacemaker_managed_services
+        or 'ironic-inspector' not in pacemaker_managed_services"
+  tags: ironic_systemd_tasks
