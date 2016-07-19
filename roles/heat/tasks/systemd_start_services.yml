@@ -17,6 +17,15 @@
         and 'heat-api-cfn' not in pacemaker_managed_services"
   tags: heat_api_cfn_systemd_start
 
+- name: Starting heat-api-cloudwatch service
+  service:
+    name: openstack-heat-api-cloudwatch
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['heat-api-cloudwatch']
+        and 'heat-api-cloudwatch' not in pacemaker_managed_services"
+  tags: heat_api_cloudwatch_systemd_start
+
 - name: Starting heat-engine service
   service:
     name: openstack-heat-engine

@@ -13,6 +13,13 @@
         and 'heat-api-cfn' in pacemaker_managed_services"
   tags: heat_api_cfn_pacemaker_start
 
+- name: Starting heat-api-cloudwatch service
+  command: "/usr/sbin/pcs resource enable openstack-heat-api-cloudwatch"
+  run_once: true
+  when: "inventory_hostname in groups['heat-api-cloudwatch']
+        and 'heat-api-cloudwatch' in pacemaker_managed_services"
+  tags: heat_api_cloudwatch_pacemaker_start
+
 - name: Starting heat-engine service
   command: "/usr/sbin/pcs resource enable openstack-heat-engine"
   run_once: true
@@ -23,4 +30,7 @@
 - name: Waiting for cluster to settle
   command: /usr/sbin/crm_resource --wait
   run_once: true
-  tags: [heat_api_pacemaker_start, heat_api_pacemaker_start, heat_engine_pacemaker_start]
+  tags: [heat_api_pacemaker_start,
+         heat_api_cfn_pacemaker_start,
+         heat_api_cloudwatch_pacemaker_start,
+         heat_engine_pacemaker_start]

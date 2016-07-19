@@ -13,6 +13,13 @@
   when: "inventory_hostname in groups['heat-api-cfn']"
   tags: heat_package_update
 
+- name: Update heat api cloudwatch package
+  yum:
+    name: openstack-heat-api-cloudwatch
+    state: latest
+  when: "inventory_hostname in groups['heat-api-cloudwatch']"
+  tags: heat_package_update
+
 - name: Update heat engine package
   yum:
     name: openstack-heat-engine
