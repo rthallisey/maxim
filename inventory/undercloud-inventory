@@ -54,6 +54,15 @@ undercloud
 [ceilometer-notification:children]
 undercloud
 
+[aodh-evaluator:children]
+undercloud
+
+[aodh-listener:children]
+undercloud
+
+[aodh-notifier:children]
+undercloud
+
 [ironic-api:children]
 undercloud
 
