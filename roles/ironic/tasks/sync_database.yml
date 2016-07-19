@@ -1,6 +1,6 @@
 ---
 - name: Run Ironic DB sync
-  shell: ironic-manage db_sync
+  shell: ironic-dbsync
   run_once: true
   become: true
   when: "inventory_hostname in groups['ironic-api']
