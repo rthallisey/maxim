@@ -3,22 +3,19 @@
   yum:
     name: openstack-ironic-api
     state: latest
-  when: "inventory_hostname in groups['ironic-api']
-         or inventory_hostname in groups['ironic-api']"
+  when: "inventory_hostname in groups['ironic-api']"
   tags: ironic_api_package_update
 
 - name: Update ironic conductor package
   yum:
     name: openstack-ironic-conductor
     state: latest
-  when: "inventory_hostname in groups['ironic-conductor']
-         or inventory_hostname in groups['ironic-conductor']"
+  when: "inventory_hostname in groups['ironic-conductor']"
   tags: ironic_conductor_package_update
 
 - name: Update ironic inspector package
   yum:
     name: openstack-ironic-inspector
     state: latest
-  when: "inventory_hostname in groups['ironic-inspector']
-         or inventory_hostname in groups['ironic-inspector']"
+  when: "inventory_hostname in groups['ironic-inspector']"
   tags: ironic_inspector_package_update

@@ -3,22 +3,19 @@
   yum:
     name: openstack-aodh-evaluator
     state: latest
-  when: "inventory_hostname in groups['aodh-evaluator']
-         or inventory_hostname in groups['aodh-evaluator']"
+  when: "inventory_hostname in groups['aodh-evaluator']"
   tags: aodh_package_update
 
 - name: Update aodh-listener package
   yum:
     name: openstack-aodh-listener
     state: latest
-  when: "inventory_hostname in groups['aodh-listener']
-         or inventory_hostname in groups['aodh-listener']"
+  when: "inventory_hostname in groups['aodh-listener']"
   tags: aodh_package_update
 
 - name: Update aodh-notifier package
   yum:
     name: openstack-aodh-notifier
     state: latest
-  when: "inventory_hostname in groups['aodh-notifier']
-         or inventory_hostname in groups['aodh-notifier']"
+  when: "inventory_hostname in groups['aodh-notifier']"
   tags: aodh_package_update
