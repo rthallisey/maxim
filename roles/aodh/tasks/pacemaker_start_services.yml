@@ -1,0 +1,28 @@
+---
+- name: Starting aodh-evaluator service
+  command: "/usr/sbin/pcs resource enable openstack-aodh-evaluator"
+  run_once: true
+  when: "inventory_hostname in groups['aodh-evaluator']
+        and 'aodh-evaluator' in pacemaker_managed_services"
+  tags: aodh_evaluator_pacemaker_start
+
+- name: Starting aodh-listener service
+  command: "/usr/sbin/pcs resource enable openstack-aodh-listener"
+  run_once: true
+  when: "inventory_hostname in groups['aodh-listener']
+        and 'aodh-listener' in pacemaker_managed_services"
+  tags: aodh_listener_pacemaker_start
+
+- name: Starting aodh-notifier service
+  command: "/usr/sbin/pcs resource enable openstack-aodh-notifier"
+  run_once: true
+  when: "inventory_hostname in groups['aodh-notifier']
+        and 'aodh-notifier' in pacemaker_managed_services"
+  tags: aodh_notifier_pacemaker_start
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [aodh_evaluator_pacemaker_start,
+         aodh_listener_pacemaker_start,
+         aodh_notifier_pacemaker_start]

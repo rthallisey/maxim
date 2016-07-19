@@ -1,0 +1,8 @@
+---
+- name: Run Aodh DB sync
+  shell: aodh-dbsync
+  run_once: true
+  become: true
+  when: "inventory_hostname in groups['aodh-evaluator']
+        and {{ not update_services | bool }}"
+  tags: aodh_db_sync

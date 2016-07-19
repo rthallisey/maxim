@@ -1,0 +1,27 @@
+---
+- name: Starting aodh-evaluator service
+  service:
+    name: openstack-aodh-evaluator
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['aodh-evaluator']
+        and 'aodh-evaluator' not in pacemaker_managed_services"
+  tags: aodh_evaluator_systemd_start
+
+- name: Starting aodh-listener service
+  service:
+    name: openstack-aodh-listener
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['aodh-listener']
+        and 'aodh-listener' not in pacemaker_managed_services"
+  tags: aodh_listener_systemd_start
+
+- name: Starting aodh-notifier service
+  service:
+    name: openstack-aodh-notifier
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['aodh-notifier']
+        and 'aodh-notifier' not in pacemaker_managed_services"
+  tags: aodh_notifier_systemd_start

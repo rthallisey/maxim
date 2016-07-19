@@ -24,6 +24,7 @@ openstack_services:
   - swift
   - ceilometer
   - ironic
+  - aodh
   - mariadb
 
 database_backup_dir: /var/tmp/mysql_upgrade_osp

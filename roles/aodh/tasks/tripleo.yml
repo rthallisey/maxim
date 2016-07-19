@@ -1,0 +1,12 @@
+---
+- include: pacemaker.yml
+  when: "'aodh-evaluator' in pacemaker_managed_services
+        or 'aodh-listener' in pacemaker_managed_services
+        or 'aodh-notifier' in pacemaker_managed_services"
+  tags: aodh_pacemaker_tasks
+
+- include: systemd.yml
+  when: "'aodh-evaluator' in pacemaker_managed_services
+        or 'aodh-listener' in pacemaker_managed_services
+        or 'aodh-notifier' in pacemaker_managed_services"
+  tags: aodh_systemd_tasks
