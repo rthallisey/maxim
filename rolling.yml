@@ -94,6 +94,14 @@
         tags: nova,
         when: "'nova' in openstack_services" }
 
+- hosts:
+    - sahara-api
+    - sahara-engine
+  roles:
+    - { role: sahara,
+        tags: sahara,
+        when: "'sahara' in openstack_services" }
+
 # Should this be only on 1 DB node? (database[0])
 - hosts: all
   roles:

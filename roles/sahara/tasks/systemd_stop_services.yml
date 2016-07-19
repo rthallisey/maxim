@@ -1,0 +1,18 @@
+---
+- name: Stopping sahara-api service
+  service:
+    name: openstack-sahara-api
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['sahara-api']
+        and 'sahara-api' not in pacemaker_managed_services"
+  tags: sahara_api_systemd_stop
+
+- name: Stopping sahara-engine service
+  service:
+    name: openstack-sahara-engine
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['sahara-engine']
+        and 'sahara-engine' not in pacemaker_managed_services"
+  tags: sahara_engine_systemd_stop

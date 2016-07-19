@@ -1,0 +1,19 @@
+---
+- name: Starting sahara-api service
+  command: "/usr/sbin/pcs resource enable openstack-sahara-api"
+  run_once: true
+  when: "inventory_hostname in groups['sahara-api']
+        and 'sahara-api' in pacemaker_managed_services"
+  tags: sahara_api_pacemaker_start
+
+- name: Starting sahara-engine service
+  command: "/usr/sbin/pcs resource enable openstack-sahara-engine"
+  run_once: true
+  when: "inventory_hostname in groups['sahara-engine']
+        and 'sahara-engine' in pacemaker_managed_services"
+  tags: sahara_engine_pacemaker_start
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [sahara_api_pacemaker_start, sahara_engine_pacemaker_start]

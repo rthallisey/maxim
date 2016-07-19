@@ -26,6 +26,7 @@ openstack_services:
   - ironic
   - aodh
   - nova
+  - sahara
   - mariadb
 
 database_backup_dir: /var/tmp/mysql_upgrade_osp

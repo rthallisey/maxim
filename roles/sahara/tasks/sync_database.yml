@@ -1,0 +1,8 @@
+---
+- name: Run Sahara DB sync
+  shell: sahara-db-manage upgrade
+  run_once: true
+  become: true
+  when: "inventory_hostname in groups['sahara-api']
+        and {{ not update_services | bool }}"
+  tags: sahara_db_sync

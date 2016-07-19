@@ -1,0 +1,14 @@
+---
+- name: Update sahara-api package
+  yum:
+    name: openstack-sahara-api
+    state: latest
+  when: "inventory_hostname in groups['sahara-api']"
+  tags: sahara_package_update
+
+- name: Update sahara-engine package
+  yum:
+    name: openstack-sahara-engine
+    state: latest
+  when: "inventory_hostname in groups['sahara-engine']"
+  tags: sahara_package_update
