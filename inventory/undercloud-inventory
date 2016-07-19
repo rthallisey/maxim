@@ -53,3 +53,15 @@ undercloud
 
 [ceilometer-notification:children]
 undercloud
+
+[ironic-api:children]
+undercloud
+
+[ironic-conductor:children]
+undercloud
+
+[ironic-inspector-dnsmasq:children]
+undercloud
+
+[ironic-inspector:children]
+undercloud

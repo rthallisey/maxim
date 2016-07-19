@@ -1,0 +1,36 @@
+---
+- name: Starting ironic-api service
+  service:
+    name: openstack-ironic-api
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['ironic-api']
+        and 'ironic-api' not in pacemaker_managed_services"
+  tags: ironic_api_systemd_start
+
+- name: Starting ironic-conductor service
+  service:
+    name: openstack-ironic-conductor
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['ironic-conductor']
+        and 'ironic-conductor' not in pacemaker_managed_services"
+  tags: ironic_conductor_systemd_start
+
+- name: Starting ironic-inspector-dnsmasq service
+  service:
+    name: openstack-ironic-inspector-dnsmasq
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['ironic-inspector-dnsmasq']
+        and 'ironic-inspector-dnsmasq' not in pacemaker_managed_services"
+  tags: ironic_inspector_dnsmasq_systemd_start
+
+- name: Starting ironic-inspector service
+  service:
+    name: openstack-ironic-inspector
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['ironic-inspector']
+        and 'ironic-inspector' not in pacemaker_managed_services"
+  tags: ironic_inspector_systemd_start

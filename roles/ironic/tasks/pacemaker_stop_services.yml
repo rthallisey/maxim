@@ -1,0 +1,36 @@
+---
+- name: Stopping ironic-api service
+  command: "/usr/sbin/pcs resource disable openstack-ironic-api"
+  run_once: true
+  when: "inventory_hostname in groups['ironic-api']
+        and 'ironic-api' in pacemaker_managed_services"
+  tags: ironic_api_pacemaker_stop
+
+- name: Stopping ironic-conductor service
+  command: "/usr/sbin/pcs resource disable openstack-ironic-conductor"
+  run_once: true
+  when: "inventory_hostname in groups['ironic-conductor']
+        and 'ironic-conductor' in pacemaker_managed_services"
+  tags: ironic_conductor_pacemaker_stop
+
+- name: Stopping ironic-inspector-dnsmasq service
+  command: "/usr/sbin/pcs resource disable openstack-ironic-inspector-dnsmasq"
+  run_once: true
+  when: "inventory_hostname in groups['ironic-inspector-dnsmasq']
+        and 'ironic-inspector-dnsmasq' in pacemaker_managed_services"
+  tags: ironic_inspector_dnsmasq_pacemaker_stop
+
+- name: Stopping ironic-inspector service
+  command: "/usr/sbin/pcs resource disable openstack-ironic-inspector"
+  run_once: true
+  when: "inventory_hostname in groups['ironic-inspector']
+        and 'ironic-inspector' in pacemaker_managed_services"
+  tags: ironic_inspector_pacemaker_stop
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [ironic_api_pacemaker_stop,
+         ironic_conductor_pacemaker_stop,
+         ironic_inspector_dnsmasq_pacemaker_stop,
+         ironic_inspector_pacemaker_stop]

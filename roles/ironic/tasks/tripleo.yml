@@ -1,0 +1,10 @@
+---
+- include: pacemaker.yml
+  when: "'glance-api' in pacemaker_managed_services
+        or 'glance-registry' in pacemaker_managed_services"
+  tags: glance_pacemaker_tasks
+
+- include: systemd.yml
+  when: "'glance-api' not in pacemaker_managed_services
+        or 'glance-registry' not in pacemaker_managed_services"
+  tags: glance_systemd_tasks

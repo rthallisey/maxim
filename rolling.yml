@@ -64,6 +64,16 @@
         tags: ceilometer,
         when: "'ceilometer' in openstack_services" }
 
+- hosts:
+    - ironic-api
+    - ironic-conductor
+    - ironic-inspector-dnsmasq
+    - ironic-inspector
+  roles:
+    - { role: ironic,
+        tags: ironic,
+        when: "'ironic' in openstack_services" }
+
 # Should this be only on 1 DB node? (database[0])
 - hosts: all
   roles:
