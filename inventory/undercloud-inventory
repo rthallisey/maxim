@@ -41,3 +41,15 @@ undercloud
 
 [swift-proxy:children]
 undercloud
+
+[ceilometer-api:children]
+undercloud
+
+[ceilometer-central:children]
+undercloud
+
+[ceilometer-collector:children]
+undercloud
+
+[ceilometer-notification:children]
+undercloud

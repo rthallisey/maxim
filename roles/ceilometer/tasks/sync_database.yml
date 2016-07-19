@@ -1,0 +1,8 @@
+---
+- name: Run Ceilometer DB sync
+  shell: ceilometer-manage db sync
+  run_once: true
+  become: true
+  when: "inventory_hostname in groups['ceilometer-api']
+        and {{ not update_services | bool }}"
+  tags: ceilometer__db_sync

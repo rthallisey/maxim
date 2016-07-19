@@ -54,6 +54,16 @@
         tags: swift,
         when: "'swift' in openstack_services" }
 
+- hosts:
+    - ceilometer-api
+    - ceilometer-central
+    - ceilometer-collector
+    - ceilometer-notification
+  roles:
+    - { role: ceilometer,
+        tags: ceilometer,
+        when: "'ceilometer' in openstack_services" }
+
 # Should this be only on 1 DB node? (database[0])
 - hosts: all
   roles:

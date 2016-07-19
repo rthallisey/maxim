@@ -1,0 +1,36 @@
+---
+- name: Stopping ceilometer-api service
+  command: "/usr/sbin/pcs resource disable openstack-ceilometer-api"
+  run_once: true
+  when: "inventory_hostname in groups['ceilometer-api']
+        and 'ceilometer-api' in pacemaker_managed_services"
+  tags: ceilometer_api_pacemaker_stop
+
+- name: Stopping ceilometer-central service
+  command: "/usr/sbin/pcs resource disable openstack-ceilometer-central"
+  run_once: true
+  when: "inventory_hostname in groups['ceilometer-central']
+        and 'ceilometer-central' in pacemaker_managed_services"
+  tags: ceilometer_central_pacemaker_stop
+
+- name: Stopping ceilometer-collector service
+  command: "/usr/sbin/pcs resource disable openstack-ceilometer-collector"
+  run_once: true
+  when: "inventory_hostname in groups['ceilometer-collector']
+        and 'ceilometer-collector' in pacemaker_managed_services"
+  tags: ceilometer_collector_pacemaker_stop
+
+- name: Stopping ceilometer-notification service
+  command: "/usr/sbin/pcs resource disable openstack-ceilometer-notification"
+  run_once: true
+  when: "inventory_hostname in groups['ceilometer-notification']
+        and 'ceilometer-notification' in pacemaker_managed_services"
+  tags: ceilometer_notification_pacemaker_stop
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [ceilometer_api_pacemaker_stop,
+         ceilometer_central_pacemaker_stop,
+         ceilometer_collector_pacemaker_stop,
+         ceilometer_notification_pacemaker_stop]

@@ -1,0 +1,14 @@
+---
+- include: pacemaker.yml
+  when: "'ceilometer-api' in pacemaker_managed_services
+         or 'ceilometer-central' in pacemaker_managed_services
+         or 'ceilometer-collector' in pacemaker_managed_services
+         or 'ceilometer-notification' in pacemaker_managed_services"
+  tags: ceilometer_pacemaker_tasks
+
+- include: systemd.yml
+  when: "'ceilometer-api' not in pacemaker_managed_services
+         or 'ceilometer-central' not in pacemaker_managed_services
+         or 'ceilometer-collector' not in pacemaker_managed_services
+         or 'ceilometer-notification' not in pacemaker_managed_services"
+  tags: ceilometer_systemd_tasks

@@ -1,0 +1,32 @@
+---
+- name: Update ceilometer API package
+  yum:
+    name: openstack-ceilometer-api
+    state: latest
+  when: "inventory_hostname in groups['ceilometer-api']
+         or inventory_hostname in groups['ceilometer-api']"
+  tags: ceilometer_package_update
+
+- name: Update ceilometer central package
+  yum:
+    name: openstack-ceilometer-central
+    state: latest
+  when: "inventory_hostname in groups['ceilometer-central']
+         or inventory_hostname in groups['ceilometer-central']"
+  tags: ceilometer_package_update
+
+- name: Update ceilometer collector package
+  yum:
+    name: openstack-ceilometer-collector
+    state: latest
+  when: "inventory_hostname in groups['ceilometer-collector']
+         or inventory_hostname in groups['ceilometer-collector']"
+  tags: ceilometer_package_update
+
+- name: Update ceilometer notification package
+  yum:
+    name: openstack-ceilometer-notification
+    state: latest
+  when: "inventory_hostname in groups['ceilometer-notification']
+         or inventory_hostname in groups['ceilometer-notification']"
+  tags: ceilometer_package_update

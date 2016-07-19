@@ -1,0 +1,36 @@
+---
+- name: Stopping ceilometer-api service
+  service:
+    name: openstack-ceilometer-api
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['ceilometer-api']
+        and 'ceilometer-api' not in pacemaker_managed_services"
+  tags: ceilometer_api_systemd_stop
+
+- name: Stopping ceilometer-central service
+  service:
+    name: openstack-ceilometer-central
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['ceilometer-central']
+        and 'ceilometer-central' not in pacemaker_managed_services"
+  tags: ceilometer_central_systemd_stop
+
+- name: Stopping ceilometer-collector service
+  service:
+    name: openstack-ceilometer-collector
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['ceilometer-collector']
+        and 'ceilometer-collector' not in pacemaker_managed_services"
+  tags: ceilometer_collector_systemd_stop
+
+- name: Stopping ceilometer-notification service
+  service:
+    name: openstack-ceilometer-notification
+    state: stopped
+  become: yes
+  when: "inventory_hostname in groups['ceilometer-notification']
+        and 'ceilometer-notification' not in pacemaker_managed_services"
+  tags: ceilometer_notification_systemd_stop
