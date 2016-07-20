@@ -1,6 +1,6 @@
 ---
 - name: Run Nova DB sync
-  shell: nova-manage db_sync
+  shell: nova-manage db sync
   run_once: true
   become: true
   when: "inventory_hostname in groups['nova-api']
