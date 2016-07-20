@@ -46,8 +46,17 @@
         when: "'gnocchi' in openstack_services" }
 
 - hosts:
+    - swift-account-auditor
+    - swift-account-reaper
+    - swift-account-replicator
     - swift-account
+    - swift-container-auditor
+    - swift-container-replicator
+    - swift-container-updater
     - swift-container
+    - swift-object-auditor
+    - swift-object-replicator
+    - swift-object-updater
     - swift-object
     - swift-proxy
   roles:

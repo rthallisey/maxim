@@ -1,14 +1,32 @@
 ---
 - include: pacemaker.yml
-  when: "'swift-account' not in pacemaker_managed_services
-        or 'swift-container' not in pacemaker_managed_services
-        or 'swift-object' not in pacemaker_managed_services
-        or 'swift-proxy' not in pacemaker_managed_services"
+  when: "'swift-account-auditor' in pacemaker_managed_services
+        or 'swift-account-reaper' in pacemaker_managed_services
+        or 'swift-account-replicator' in pacemaker_managed_services
+        or 'swift-account' in pacemaker_managed_services
+        or 'swift-container-auditor' in pacemaker_managed_services
+        or 'swift-container-replicator' in pacemaker_managed_services
+        or 'swift-container-updater' in pacemaker_managed_services
+        or 'swift-container' in pacemaker_managed_services
+        or 'swift-object-auditor' in pacemaker_managed_services
+        or 'swift-object-replicator' in pacemaker_managed_services
+        or 'swift-object-updater' in pacemaker_managed_services
+        or 'swift-object' in pacemaker_managed_services
+        or 'swift-proxy' in pacemaker_managed_services"
   tags: swift_pacemaker_tasks
 
 - include: systemd.yml
-  when: "'swift-account' not in pacemaker_managed_services
+  when: "'swift-account-auditor' not in pacemaker_managed_services
+        or 'swift-account-reaper' not in pacemaker_managed_services
+        or 'swift-account-replicator' not in pacemaker_managed_services
+        or 'swift-account' not in pacemaker_managed_services
+        or 'swift-container-auditor' not in pacemaker_managed_services
+        or 'swift-container-replicator' not in pacemaker_managed_services
+        or 'swift-container-updater' not in pacemaker_managed_services
         or 'swift-container' not in pacemaker_managed_services
+        or 'swift-object-auditor' not in pacemaker_managed_services
+        or 'swift-object-replicator' not in pacemaker_managed_services
+        or 'swift-object-updater' not in pacemaker_managed_services
         or 'swift-object' not in pacemaker_managed_services
         or 'swift-proxy' not in pacemaker_managed_services"
   tags: swift_systemd_tasks
