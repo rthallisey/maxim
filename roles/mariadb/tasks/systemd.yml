@@ -1,19 +1,21 @@
 ---
-# Only backup once on the first database node
 - include: database_backup.yml
-  when: "inventory_hostname in groups['mariadb'][0]"
+  when: "inventory_hostname in groups['mariadb']"
+  run_once: true
   tags: database_backup
 
 - include: systemd_stop_services.yml
 
 - include: move_data.yml
   when: "inventory_hostname in groups['mariadb']"
+  run_once: true
   tags: database_backup
 
 - include: update_packages.yml
 
 - include: database_setup.yml
   when: "inventory_hostname in groups['mariadb']"
+  run_once: true
   tags: database_setup
 
 - include: systemd_start_services.yml
