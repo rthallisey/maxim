@@ -34,3 +34,12 @@
   when: "inventory_hostname in groups['ceilometer-notification']
         and 'ceilometer-notification' not in pacemaker_managed_services"
   tags: ceilometer_notification_systemd_start
+
+- name: Starting ceilometer-compute service
+  service:
+    name: openstack-ceilometer-compute
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['ceilometer-compute']
+        and 'ceilometer-compute' not in pacemaker_managed_services"
+  tags: ceilometer_compute_systemd_start

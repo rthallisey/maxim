@@ -77,6 +77,8 @@ undercloud
 [ceilometer-collector:children]
 undercloud
 
+[ceilometer-compute:children]
+
 [ceilometer-notification:children]
 undercloud
 

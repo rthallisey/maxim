@@ -1,4 +1,15 @@
 ---
+- hosts:
+    - neutron-dhcp-agent
+    - neutron-l3-agent
+    - neutron-metadata-agent
+    - neutron-openvswitch-agent
+    - neutron-server
+  roles:
+    - { role: neutron,
+        tags: neutron,
+        when: "'neutron' in openstack_services" }
+
 - hosts: all
   roles:
     - { role: puppet_modules,
@@ -69,6 +80,7 @@
     - ceilometer-central
     - ceilometer-collector
     - ceilometer-notification
+    - ceilometer-compute
   roles:
     - { role: ceilometer,
         tags: ceilometer,
