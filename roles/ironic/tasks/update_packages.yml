@@ -22,3 +22,13 @@
   when: "inventory_hostname in groups['ironic-inspector']"
   become: true
   tags: ironic_inspector_package_update
+
+- name: Update python ironic package
+  yum:
+    name: python-ironic-lib
+    state: latest
+  when: "inventory_hostname in groups['ironic-api']
+         or inventory_hostname in groups['ironic-conductor']
+         or inventory_hostname in groups['ironic-inspector']"
+  become: true
+  tags: ironic_inspector_package_update

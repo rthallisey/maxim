@@ -14,3 +14,12 @@
   when: "inventory_hostname in groups['gnocchi-statsd']"
   become: true
   tags: gnocchi_package_update
+
+- name: Update python gnocchi packages
+  yum:
+    name: python-gnocchi
+    state: latest
+  when: "inventory_hostname in groups['gnocchi-metricd']
+         or inventory_hostname in groups['gnocchi-statsd']"
+  become: true
+  tags: gnocchi_package_update

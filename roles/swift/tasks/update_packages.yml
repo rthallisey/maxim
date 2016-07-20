@@ -3,7 +3,10 @@
   yum:
     name: openstack-swift
     state: latest
-  when: "inventory_hostname in groups['swift-account']"
+  when: "inventory_hostname in groups['swift-account']
+         or inventory_hostname in groups['swift-account']
+         or inventory_hostname in groups['swift-container']
+         or inventory_hostname in groups['swift-object']"
   become: true
   tags: swift_package_update
 

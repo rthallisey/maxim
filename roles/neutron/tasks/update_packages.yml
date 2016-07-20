@@ -17,3 +17,16 @@
   when: "inventory_hostname in groups['neutron-openvswitch-agent']"
   become: true
   tags: neutron_package_update
+
+- name: Update python neutron packages
+  yum:
+    name:
+      - python-neutron-lib
+      - python-neutron
+    state: latest
+  when: "inventory_hostname in groups['neutron-dhcp-agent']
+         or inventory_hostname in groups['neutron-l3-agent']
+         or inventory_hostname in groups['neutron-server']
+         or inventory_hostname in groups['neutron-metadata-agent']"
+  become: true
+  tags: neutron_package_update

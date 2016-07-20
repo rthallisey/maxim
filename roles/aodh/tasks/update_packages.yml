@@ -22,3 +22,13 @@
   when: "inventory_hostname in groups['aodh-notifier']"
   become: true
   tags: aodh_package_update
+
+- name: Update python aodh package
+  yum:
+    name: python-aodh
+    state: latest
+  when: "inventory_hostname in groups['aodh-evaluator']
+         or inventory_hostname in groups['aodh-listener']
+         or inventory_hostname in groups['aodh-notifier']"
+  become: true
+  tags: aodh_package_update

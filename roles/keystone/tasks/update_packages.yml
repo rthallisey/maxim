@@ -6,3 +6,13 @@
   when: "inventory_hostname in groups['keystone']"
   become: true
   tags: keystone_package_update
+
+- name: Update python keystone packages
+  yum:
+    name:
+      - python-keystone
+      - python-keystonemiddleware
+    state: latest
+  when: "inventory_hostname in groups['keystone']"
+  become: true
+  tags: keystone_package_update

@@ -14,3 +14,12 @@
   when: "inventory_hostname in groups['sahara-engine']"
   become: true
   tags: sahara_package_update
+
+- name: Update python sahara package
+  yum:
+    name: python-sahara
+    state: latest
+  when: "inventory_hostname in groups['sahara-api']
+         or inventory_hostname in groups['sahara-engine']"
+  become: true
+  tags: sahara_package_update

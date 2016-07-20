@@ -30,3 +30,16 @@
   when: "inventory_hostname in groups['ceilometer-notification']"
   become: true
   tags: ceilometer_package_update
+
+- name: Update python ceilometer package
+  yum:
+    name:
+      - python-ceilometer
+      - python-ceilometermiddleware
+    state: latest
+  when: "inventory_hostname in groups['ceilometer-api']
+         or inventory_hostname in groups['ceilometer-central']
+         or inventory_hostname in groups['ceilometer-collector']
+         or inventory_hostname in groups['ceilometer-notification']"
+  become: true
+  tags: ceilometer_package_update
