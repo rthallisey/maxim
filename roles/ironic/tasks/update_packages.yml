@@ -5,7 +5,7 @@
     state: latest
   when: "inventory_hostname in groups['ironic-api']"
   become: true
-  tags: ironic_api_package_update
+  tags: ironic_package_update
 
 - name: Update ironic conductor package
   yum:
@@ -13,7 +13,7 @@
     state: latest
   when: "inventory_hostname in groups['ironic-conductor']"
   become: true
-  tags: ironic_conductor_package_update
+  tags: ironic_package_update
 
 - name: Update ironic inspector package
   yum:
@@ -21,7 +21,7 @@
     state: latest
   when: "inventory_hostname in groups['ironic-inspector']"
   become: true
-  tags: ironic_inspector_package_update
+  tags: ironic_package_update
 
 - name: Update python ironic package
   yum:
@@ -31,4 +31,4 @@
          or inventory_hostname in groups['ironic-conductor']
          or inventory_hostname in groups['ironic-inspector']"
   become: true
-  tags: ironic_inspector_package_update
+  tags: ironic_package_update
