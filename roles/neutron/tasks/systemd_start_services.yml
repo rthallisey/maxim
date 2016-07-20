@@ -1,0 +1,45 @@
+---
+- name: Starting neutron-dhcp-agent service
+  service:
+    name: openstack-neutron-dhcp-agent
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['neutron-dhcp-agent']
+        and 'neutron-dhcp-agent' not in pacemaker_managed_services"
+  tags: neutron_dhcp_agent_systemd_start
+
+- name: Starting neutron-l3-agent service
+  service:
+    name: openstack-neutron-l3-agent
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['neutron-l3-agent']
+        and 'neutron-l3-agent' not in pacemaker_managed_services"
+  tags: neutron_l3_agent_systemd_start
+
+- name: Starting neutron-metadata-agent service
+  service:
+    name: openstack-neutron-metadata-agent
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['neutron-metadata-agent']
+        and 'neutron-metadata-agent' not in pacemaker_managed_services"
+  tags: neutron_metadata_agent_systemd_start
+
+- name: Starting neutron-openvswitch-agent service
+  service:
+    name: openstack-neutron-openvswitch-agent
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['neutron-openvswitch-agent']
+        and 'neutron-openvswitch-agent' not in pacemaker_managed_services"
+  tags: neutron_openvswitch_agent_systemd_start
+
+- name: Starting neutron-server service
+  service:
+    name: openstack-neutron-server
+    state: started
+  become: yes
+  when: "inventory_hostname in groups['neutron-server']
+        and 'neutron-server' not in pacemaker_managed_services"
+  tags: neutron_server_systemd_start

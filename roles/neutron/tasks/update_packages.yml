@@ -1,0 +1,17 @@
+---
+- name: Update neutron packages
+  yum:
+    name: openstack-neutron
+    state: latest
+  when: "inventory_hostname in groups['neutron-dhcp-agent']
+         or inventory_hostname in groups['neutron-l3-agent']
+         or inventory_hostname in groups['neutron-server']
+         or inventory_hostname in groups['neutron-metadata-agent']"
+  tags: neutron_package_update
+
+- name: Update neutron-openvswitch-agent package
+  yum:
+    name: openstack-neutron-openvswitch
+    state: latest
+  when: "inventory_hostname in groups['neutron-openvswitch-agent']"
+  tags: neutron_package_update

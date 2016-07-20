@@ -112,6 +112,17 @@
         tags: sahara,
         when: "'sahara' in openstack_services" }
 
+- hosts:
+    - neutron-dhcp-agent
+    - neutron-l3-agent
+    - neutron-metadata-agent
+    - neutron-openvswitch-agent
+    - neutron-server
+  roles:
+    - { role: neutron,
+        tags: neutron,
+        when: "'neutron' in openstack_services" }
+
 # Should this be only on 1 DB node? (database[0])
 - hosts: all
   roles:

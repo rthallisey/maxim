@@ -1,0 +1,8 @@
+---
+- include: systemd_stop_services.yml
+
+- include: update_packages.yml
+
+- include: sync_database.yml
+
+- include: systemd_start_services.yml

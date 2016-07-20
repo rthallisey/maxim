@@ -1,0 +1,44 @@
+---
+- name: Starting neutron-dhcp-agent service
+  command: "/usr/sbin/pcs resource enable openstack-neutron-dhcp-agent"
+  run_once: true
+  when: "inventory_hostname in groups['neutron-dhcp-agent']
+        and 'neutron-dhcp-agent' in pacemaker_managed_services"
+  tags: neutron_dhcp_agent_pacemaker_start
+
+- name: Starting neutron-l3-agent service
+  command: "/usr/sbin/pcs resource enable openstack-neutron-l3-agent"
+  run_once: true
+  when: "inventory_hostname in groups['neutron-l3-agent']
+        and 'neutron-l3-agent' in pacemaker_managed_services"
+  tags: neutron_l3_agent_pacemaker_start
+
+- name: Starting neutron-metadata-agent service
+  command: "/usr/sbin/pcs resource enable openstack-neutron-metadata-agent"
+  run_once: true
+  when: "inventory_hostname in groups['neutron-metadata-agent']
+        and 'neutron-metadata-agent' in pacemaker_managed_services"
+  tags: neutron_metadata_agent_pacemaker_start
+
+- name: Starting neutron-openvswitch-agent service
+  command: "/usr/sbin/pcs resource enable openstack-neutron-openvswitch-agent"
+  run_once: true
+  when: "inventory_hostname in groups['neutron-openvswitch-agent']
+        and 'neutron-openvswitch-agent' in pacemaker_managed_services"
+  tags: neutron_openvswitch_agent_pacemaker_start
+
+- name: Starting neutron-server service
+  command: "/usr/sbin/pcs resource enable openstack-neutron-server"
+  run_once: true
+  when: "inventory_hostname in groups['neutron-server']
+        and 'neutron-server' in pacemaker_managed_services"
+  tags: nova_scheduler_pacemaker_start
+
+- name: Waiting for cluster to settle
+  command: /usr/sbin/crm_resource --wait
+  run_once: true
+  tags: [neutron_dhcp_agent_pacemaker_start,
+         neutron_l3_agent_pacemaker_start,
+         neutron_metadata_agent_pacemaker_start,
+         neutron_openvswitch_agent_pacemaker_start,
+         nova_scheduler_pacemaker_start]

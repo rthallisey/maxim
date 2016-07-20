@@ -119,3 +119,15 @@ undercloud
 [mariadb:children]
 
 [sahara:children]
+
+[neutron-dhcp-agent:children]
+undercloud
+
+[neutron-l3-agent:children]
+
+[neutron-metadata-agent:children]
+
+[neutron-openvswitch-agent:children]
+
+[neutron-server:children]
+undercloud

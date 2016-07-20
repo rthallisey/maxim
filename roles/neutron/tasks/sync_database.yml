@@ -1,0 +1,8 @@
+---
+- name: Run Neutron DB sync
+  shell: neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugin.ini upgrade head
+  run_once: true
+  become: true
+  when: "inventory_hostname in groups['neutron-server']
+        and {{ not update_services | bool }}"
+  tags: neutron_db_sync

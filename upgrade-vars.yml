@@ -27,6 +27,7 @@ openstack_services:
   - aodh
   - nova
   - sahara
+  - neutron
   - mariadb
 
 database_backup_dir: /var/tmp/mysql_upgrade_osp
@@ -40,8 +41,8 @@ database_backup_dir: /var/tmp/mysql_upgrade_osp
 ##########
 # Be careful not to leave and empty list or Ansible will complain
 # Add/remove and services managed by Pacemaker
-pacemaker_managed_services:
-  - cinder-volume
-  - mariadb
+#pacemaker_managed_services:
+#  - cinder-volume
+#  - mariadb
 
 delorean_repo_url: http://buildlogs.centos.org/centos/7/cloud/x86_64/rdo-trunk-master/delorean.repo

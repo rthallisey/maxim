@@ -1,0 +1,16 @@
+---
+- include: pacemaker.yml
+  when: "'neutron-dhcp-agent' in pacemaker_managed_services
+         or 'neutron-l3-agent' in pacemaker_managed_services
+         or 'neutron-metadata-agent' in pacemaker_managed_services
+         or 'neutron-openvswitch-agent' in pacemaker_managed_services
+         or 'neutron-server' in pacemaker_managed_services"
+  tags: neutron_pacemaker_tasks
+
+- include: systemd.yml
+  when: "'neutron-dhcp-agent' not in pacemaker_managed_services
+         or 'neutron-l3-agent' not in pacemaker_managed_services
+         or 'neutron-metadata-agent' not in pacemaker_managed_services
+         or 'neutron-openvswitch-agent' not in pacemaker_managed_services
+         or 'neutron-server' not in pacemaker_managed_services"
+  tags: neutron_systemd_tasks
