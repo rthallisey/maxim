@@ -4,6 +4,7 @@
     name: openstack-aodh-evaluator
     state: latest
   when: "inventory_hostname in groups['aodh-evaluator']"
+  become: true
   tags: aodh_package_update
 
 - name: Update aodh-listener package
@@ -11,6 +12,7 @@
     name: openstack-aodh-listener
     state: latest
   when: "inventory_hostname in groups['aodh-listener']"
+  become: true
   tags: aodh_package_update
 
 - name: Update aodh-notifier package
@@ -18,4 +20,5 @@
     name: openstack-aodh-notifier
     state: latest
   when: "inventory_hostname in groups['aodh-notifier']"
+  become: true
   tags: aodh_package_update

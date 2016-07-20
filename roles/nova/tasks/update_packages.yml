@@ -4,6 +4,7 @@
     name: openstack-nova-api
     state: latest
   when: "inventory_hostname in groups['nova-api']"
+  become: true
   tags: nova_package_update
 
 - name: Update nova-cert package
@@ -11,6 +12,7 @@
     name: openstack-nova-cert
     state: latest
   when: "inventory_hostname in groups['nova-cert']"
+  become: true
   tags: nova_package_update
 
 - name: Update nova-compute package
@@ -18,6 +20,7 @@
     name: openstack-nova-compute
     state: latest
   when: "inventory_hostname in groups['nova-compute']"
+  become: true
   tags: nova_package_update
 
 - name: Update nova-conductor package
@@ -25,6 +28,7 @@
     name: openstack-nova-conductor
     state: latest
   when: "inventory_hostname in groups['nova-conductor']"
+  become: true
   tags: nova_package_update
 
 - name: Update nova-scheduler package
@@ -32,4 +36,5 @@
     name: openstack-nova-scheduler
     state: latest
   when: "inventory_hostname in groups['nova-scheduler']"
+  become: true
   tags: nova_package_update

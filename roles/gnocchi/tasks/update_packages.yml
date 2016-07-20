@@ -4,6 +4,7 @@
     name: openstack-gnocchi-metricd
     state: latest
   when: "inventory_hostname in groups['gnocchi-metricd']"
+  become: true
   tags: gnocchi_package_update
 
 - name: Update gnocchi-statsd package
@@ -11,4 +12,5 @@
     name: openstack-gnocchi-statsd
     state: latest
   when: "inventory_hostname in groups['gnocchi-statsd']"
+  become: true
   tags: gnocchi_package_update

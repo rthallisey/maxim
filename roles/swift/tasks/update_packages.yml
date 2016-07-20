@@ -4,6 +4,7 @@
     name: openstack-swift
     state: latest
   when: "inventory_hostname in groups['swift-account']"
+  become: true
   tags: swift_package_update
 
 - name: Update swift-account packages
@@ -11,6 +12,7 @@
     name: openstack-swift-account
     state: latest
   when: "inventory_hostname in groups['swift-account']"
+  become: true
   tags: swift_package_update
 
 - name: Update swift-container packages
@@ -18,6 +20,7 @@
     name: openstack-swift-container
     state: latest
   when: "inventory_hostname in groups['swift-container']"
+  become: true
   tags: swift_package_update
 
 - name: Update swift-object packages
@@ -25,4 +28,5 @@
     name: openstack-swift-object
     state: latest
   when: "inventory_hostname in groups['swift-object']"
+  become: true
   tags: swift_package_update

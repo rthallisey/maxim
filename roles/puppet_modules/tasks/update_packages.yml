@@ -3,3 +3,4 @@
   yum:
     name: openstack-puppet-modules
     state: latest
+  become: true

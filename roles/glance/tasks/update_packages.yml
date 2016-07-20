@@ -5,4 +5,5 @@
     state: latest
   when: "inventory_hostname in groups['glance-api']
          or inventory_hostname in groups['glance-registry']"
+  become: true
   tags: glance_package_update

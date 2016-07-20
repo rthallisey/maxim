@@ -4,6 +4,7 @@
     name: openstack-ceilometer-api
     state: latest
   when: "inventory_hostname in groups['ceilometer-api']"
+  become: true
   tags: ceilometer_package_update
 
 - name: Update ceilometer central package
@@ -11,6 +12,7 @@
     name: openstack-ceilometer-central
     state: latest
   when: "inventory_hostname in groups['ceilometer-central']"
+  become: true
   tags: ceilometer_package_update
 
 - name: Update ceilometer collector package
@@ -18,6 +20,7 @@
     name: openstack-ceilometer-collector
     state: latest
   when: "inventory_hostname in groups['ceilometer-collector']"
+  become: true
   tags: ceilometer_package_update
 
 - name: Update ceilometer notification package
@@ -25,4 +28,5 @@
     name: openstack-ceilometer-notification
     state: latest
   when: "inventory_hostname in groups['ceilometer-notification']"
+  become: true
   tags: ceilometer_package_update

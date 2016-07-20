@@ -4,6 +4,7 @@
     name: openstack-heat-api
     state: latest
   when: "inventory_hostname in groups['heat-api']"
+  become: true
   tags: heat_package_update
 
 - name: Update heat api cfn package
@@ -11,6 +12,7 @@
     name: openstack-heat-api-cfn
     state: latest
   when: "inventory_hostname in groups['heat-api-cfn']"
+  become: true
   tags: heat_package_update
 
 - name: Update heat api cloudwatch package
@@ -18,6 +20,7 @@
     name: openstack-heat-api-cloudwatch
     state: latest
   when: "inventory_hostname in groups['heat-api-cloudwatch']"
+  become: true
   tags: heat_package_update
 
 - name: Update heat engine package
@@ -25,4 +28,5 @@
     name: openstack-heat-engine
     state: latest
   when: "inventory_hostname in groups['heat-engine']"
+  become: true
   tags: heat_package_update

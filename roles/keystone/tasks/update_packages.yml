@@ -4,4 +4,5 @@
     name: openstack-keystone
     state: latest
   when: "inventory_hostname in groups['keystone']"
+  become: true
   tags: keystone_package_update
