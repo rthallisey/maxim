@@ -1,6 +1,6 @@
 ---
 - name: Running heat DB sync
-  shell: heat-manage db_sync
+  shell: heat-manage --config-file /etc/heat/heat.conf db_sync
   run_once: true
   become: true
   when: "inventory_hostname in groups['heat-api']
