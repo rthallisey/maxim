@@ -13,13 +13,10 @@ undercloud
 undercloud
 
 [cinder-scheduler:children]
-undercloud
 
 [cinder-api:children]
-undercloud
 
 [cinder-volume:children]
-undercloud
 
 [heat-api:children]
 undercloud
@@ -27,13 +24,42 @@ undercloud
 [heat-api-cfn:children]
 undercloud
 
+[heat-api-cloudwatch:children]
+
 [heat-engine:children]
+undercloud
+
+[swift-account-auditor:children]
+undercloud
+
+[swift-account-reaper:children]
+undercloud
+
+[swift-account-replicator:children]
 undercloud
 
 [swift-account:children]
 undercloud
 
+[swift-container-auditor:children]
+undercloud
+
+[swift-container-replicator:children]
+undercloud
+
+[swift-container-updater:children]
+undercloud
+
 [swift-container:children]
+undercloud
+
+[swift-object-auditor:children]
+undercloud
+
+[swift-object-replicator:children]
+undercloud
+
+[swift-object-updater:children]
 undercloud
 
 [swift-object:children]
@@ -89,3 +115,7 @@ undercloud
 
 [nova-scheduler:children]
 undercloud
+
+[mariadb:children]
+
+[sahara:children]
