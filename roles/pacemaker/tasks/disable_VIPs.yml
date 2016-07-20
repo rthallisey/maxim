@@ -2,11 +2,13 @@
 - name: Gathering all Pacemaker managed VIPs
   command: /usr/sbin/pcs resource show | grep ocf::heartbeat:IPaddr2 | grep Started | awk '{ print $1 }'
   register: vips
+  run_once: true
   tags: disable_vips
 
 - name: Disabling all Pacemaker managed VIPs
   command: /usr/bin/pcs resource disable {{ item }}
   with_items: vips.stdout
+  run_once: true
   tags: disable_vips
 
 # Check that VIPs have been shutdown
@@ -17,4 +19,5 @@
 #   retries: 10
 #   delay: 5
 #   with_items: vips.stdout
+#   run_once: true
 #   tags: disable_vips

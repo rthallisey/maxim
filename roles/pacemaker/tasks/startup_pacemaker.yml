@@ -3,6 +3,7 @@
   command: /usr/sbin/pcs cluster start --all
   when: "inventory_hostname in groups[item]"
   with_items: "{{ pacemaker_managed_services }}"
+  run_once: true
   tags: pacemaker_start
 
 - name: Waiting for Pacemaker to start
@@ -13,4 +14,5 @@
   delay: 5
   when: "inventory_hostname in groups[item]"
   with_items: "{{ pacemaker_managed_services }}"
+  run_once: true
   tags: pacemaker_start
