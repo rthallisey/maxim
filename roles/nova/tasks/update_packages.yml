@@ -50,3 +50,17 @@
          or inventory_hostname in groups['nova-scheduler']"
   become: true
   tags: nova_package_update
+
+- name: Update python oslo packages
+  yum:
+    name:
+      - python-oslo*
+      - python2-oslo*
+    state: latest
+  when: "inventory_hostname in groups['nova-api']
+         or inventory_hostname in groups['nova-cert']
+         or inventory_hostname in groups['nova-compute']
+         or inventory_hostname in groups['nova-conductor']
+         or inventory_hostname in groups['nova-scheduler']"
+  become: true
+  tags: nova_package_update
