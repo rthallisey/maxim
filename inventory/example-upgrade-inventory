@@ -104,6 +104,12 @@ compute
 [ceilometer-notification:children]
 controller
 
+[gnocchi-metricd:children]
+controller
+
+[gnocchi-statsd:children]
+controller
+
 [aodh-evaluator:children]
 controller
 
@@ -114,16 +120,12 @@ controller
 controller
 
 [ironic-api:children]
-controller
 
 [ironic-conductor:children]
-controller
 
 [ironic-inspector-dnsmasq:children]
-controller
 
 [ironic-inspector:children]
-controller
 
 [nova-api:children]
 controller
@@ -143,7 +145,10 @@ controller
 [mariadb:children]
 controller
 
-[sahara:children]
+[sahara-api:children]
+controller
+
+[sahara-engine:children]
 controller
 
 [neutron-dhcp-agent:children]

@@ -82,6 +82,12 @@ undercloud
 [ceilometer-notification:children]
 undercloud
 
+[gnocchi-metricd:children]
+undercloud
+
+[gnocchi-statsd:children]
+undercloud
+
 [aodh-evaluator:children]
 undercloud
 
@@ -120,7 +126,9 @@ undercloud
 
 [mariadb:children]
 
-[sahara:children]
+[sahara-api:children]
+
+[sahara-engine:children]
 
 [neutron-dhcp-agent:children]
 undercloud
