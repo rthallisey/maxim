@@ -3,8 +3,10 @@
   serial: "30%"
   when: "'mariadb' != item"
   with_items: "{{ openstack_services }}"
+  tags: stop_systemd_services
 
 - include: "{{ playbook_dir }}/roles/{{ item.split('-')[0] }}/tasks/pacemaker_stop_services.yml"
   serial: "30%"
   when: "'mariadb' != item"
   with_items: "{{ pacemaker_managed_services }}"
+  tags: stop_pacemaker_services

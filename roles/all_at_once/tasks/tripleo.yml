@@ -1,5 +1,6 @@
 ---
 - include: stop_services.yml
+  tags: stop_all_services
 
 - include: disable_fencing.yml
 
@@ -9,8 +10,11 @@
 - include: enable_fencing.yml
 
 - include: update_packages.yml
+  tags: update_all_packages
 
 - include: sync_database.yml
   when: "{{ not update_services | bool }}"
+  tags: sync_all_databases
 
 - include: start_services.yml
+  tags: start_all_services

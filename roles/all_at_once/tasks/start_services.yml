@@ -1,10 +1,12 @@
 ---
-- include: "{{ playbook_dir }}/roles/{{ item }}/tasks/systemd_start_services.yml"
-  serial: "30%"
-  when: "'mariadb' != item"
-  with_items: "{{ openstack_services }}"
-
 - include: "{{ playbook_dir }}/roles/{{ item.split('-')[0] }}/tasks/pacemaker_start_services.yml"
   serial: "30%"
   when: "'mariadb' != item"
   with_items: "{{ pacemaker_managed_services }}"
+  tags: start_pacemaker_services
+
+- include: "{{ playbook_dir }}/roles/{{ item }}/tasks/systemd_start_services.yml"
+  serial: "30%"
+  when: "'mariadb' != item"
+  with_items: "{{ openstack_services }}"
+  tags: start_systemd_services
