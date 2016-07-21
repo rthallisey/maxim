@@ -1,4 +1,9 @@
 ---
 - include: "{{ playbook_dir }}/roles/{{ item }}/tasks/sync_database.yml"
   serial: "30%"
+  when:
+    - "'swift' != item"
+    - "'gnocchi' != item"
+    - "'mariadb' != item"
+    - "'sahara' != item"
   with_items: "{{ openstack_services }}"
