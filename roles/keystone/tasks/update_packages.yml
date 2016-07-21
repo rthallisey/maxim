@@ -1,7 +1,9 @@
 ---
 - name: Update keystone packages
   yum:
-    name: openstack-keystone
+    name:
+      - openstack-keystone
+      - httpd
     state: latest
   when: "inventory_hostname in groups['keystone']"
   become: true
