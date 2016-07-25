@@ -33,10 +33,24 @@ the all-at-once upgrade::
 Rolling update by hand
 ======================
 
-To do a rolling upgrade by hand, run all the tasks for an each service
-individually by using tags in the rolling playbook. Also make sure that the
-service of choice is included in ``upgrade-vars.yml`` under
-``openstack_services``.  For example, to do a rolling upgrade for glance::
+There are multiple ways to do this. The most efficient way is to use the
+all-at-once playbook because it only runs tasks based on services listed in
+``openstack-services`` while rolling will sort through all tasks using tags.
+
+Edit ``upgrade-vars.yml`` and change ``openstack-services`` to only include
+the service that needs to be upgrade.
+
+::
+
+   openstack_services: glance
+
+Now, run the upgrade with the all-at-once playbook::
+
+  ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade-vars.yml all-at-once.yml
+
+The operator can also use tags in the rolling playbook as long as the service of
+choice is included in ``upgrade-vars.yml`` under ``openstack_services``.  For
+example, to do a rolling upgrade for glance::
 
   ansible-playbook -i /etc/tripleo/upgrade-inventory -e @upgrade-vars.yml rolling.yml --tags "glance"
 
