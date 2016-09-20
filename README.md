@@ -20,15 +20,15 @@ Missing Pieces (Tripleo)
 The upgrade and update for Tripleo require some additional pieces that aren't
 implemented yet.
 
-- :strike: `Inventory generation module`
-- :strike: `Playbooks for all the services`
-- :strike: `Consumable environment file`
-- :strike: `Support for pacemaker and systemd`
-- :strike: `Rolling upgrade/update playbook`
-- :strike: `All at once upgrade/update playbook`
-- :strike: `Tags for individual upgrade/update tasks`
-- :strike: `Database playbook`
-- :strike: `Repo setup module`
+- ~~Inventory generation module~~
+- ~~Playbooks for all the services~~
+- ~~Consumable environment file~~
+- ~~Support for pacemaker and systemd~~
+- ~~Rolling upgrade/update playbook~~
+- ~~All at once upgrade/update playbook~~
+- ~~Tags for individual upgrade/update tasks~~
+- ~~Database playbook~~
+- ~~Repo setup module~~
 - Render Puppet Heira data from the undercloud and use Ansible Puppet Apply to
   generate the new config files for services.
 - Multiple release playbook support. HA lite arch will require additional
