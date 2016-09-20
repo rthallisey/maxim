@@ -12,7 +12,7 @@ Getting Started
 ===============
 
 Maxim's first upgrade playbook targets tripleo.  Here are the docs to get
-started testing a `tripleo upgrade`_.
+started testing a [tripleo upgrade](./doc/tripleo-upgrade.rst)
 
 Missing Pieces (Tripleo)
 ========================
@@ -34,5 +34,3 @@ implemented yet.
 - Multiple release playbook support. HA lite arch will require additional
   flexibility to move services from pacemaker to systemd upon upgrading.
 - Upgrade/update gating in tripleo based on Maxim.
-
-.. _tripleo upgrade: ./doc/tripleo-upgrade.rst
