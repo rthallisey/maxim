@@ -38,7 +38,7 @@ all-at-once playbook because it only runs tasks based on services listed in
 ``openstack-services`` while rolling will sort through all tasks using tags.
 
 Edit ``upgrade-vars.yml`` and change ``openstack-services`` to only include
-the service that needs to be upgrade.
+the service that needs to be upgraded.
 
 ::
 
