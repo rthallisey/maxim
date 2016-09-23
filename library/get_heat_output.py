@@ -7,7 +7,7 @@ import subprocess
 def main():
     module = AnsibleModule(argument_spec={})
 
-    rc = subprocess.check_output('heat output-show overcloud RoleServices > '
+    rc = subprocess.check_output('heat output-show overcloud EnabledServices > '
                           '/tmp/upgrade-information', shell=True)
 
     rc = subprocess.check_output('heat output-show overcloud RoleNodes > '

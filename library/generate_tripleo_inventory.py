@@ -42,15 +42,17 @@ class BuildInventory (object):
         inventory_file.write('[%s]\n' % undercloud_role)
         inventory_file.write('%s\n' % localhost)
 
-        for role_dict in heat_upgrade_data:
-            for role in role_dict:
-                inventory_file.write('\n[%s]\n' % role)
+        for role in heat_upgrade_data.keys():
+            inventory_file.write('\n[%s]\n' % role)
 
-                for hosts in heat_node_data[0][role]:
-                    inventory_file.write('%s\n' % hosts)
+            for hosts in heat_node_data[role]:
+                inventory_file.write('%s\n' % hosts)
+            self.write_common_data(inventory_file, role)
 
-                self.write_common_data(inventory_file, role)
-                self.tripleo_services[role] = role_dict.get(role)
+            for service in heat_upgrade_data.get(role):
+                # Write in the services later so the inventory
+                # is more readable
+                self.tripleo_services[role] = service
 
         self.write_service_list(inventory_file)
         inventory_file.close()
