@@ -21,6 +21,7 @@ The upgrade and update for Tripleo require some additional pieces that aren't
 implemented yet.
 
 - ~~Inventory generation module~~
+- Merge Inventory patch in THT: https://review.openstack.org/#/c/327822/
 - ~~Playbooks for all the services~~
 - ~~Consumable environment file~~
 - ~~Support for pacemaker and systemd~~
